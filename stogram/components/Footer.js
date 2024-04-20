@@ -12,7 +12,7 @@ return (
     <div className='flex items-center justify-center space-x-4 cursor-pointer '>
 
 
-    <div className='transition ease-in-out delay-50 hover:-translate-y-1 cursor-pointer text-white font-mono font-bold text-lg'>
+    <div className='transition ease-in-out delay-50 hover:-translate-y-1 cursor-pointer text-slate-400 font-mono font-bold text-lg'>
 
     <a href='https://github.com/ayush035/final'>
     {/* <img src='/github-1.png'>
@@ -20,23 +20,23 @@ return (
         Github
         </a>
         </div>
-        <div className='text-gray-700 text-3xl'>
+        <div className='text-slate-400 text-3xl'>
         |
         </div>
 
 
 
 
-    <div className='transition ease-in-out delay-50 hover:-translate-y-1 cursor-pointer text-white font-mono font-bold text-lg'>
-    <a href='https://twitter.com/'>
+    <div className='transition ease-in-out delay-50 hover:-translate-y-1 cursor-pointer text-slate-400 font-mono font-bold text-lg'>
+    <a href='https://twitter.com/stogramhq'>
 
     {/* <img src='/twitter-1.png'>
         </img> */} Twitter
         </a>
        
     </div>
-    <div className='text-white my-4'>
-        Copyright © 2022 Raise Inc. All rights reserved
+    <div className='text-slate-400 my-4'>
+        Copyright © 2024 Stogram Inc. All rights reserved
         </div>
 
     </div>

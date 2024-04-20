@@ -1,5 +1,5 @@
 .container {
-    background-color: #000000;
+    background-color: #fcf7f7;
     min-height: 100vh;
   }
   
@@ -17,7 +17,11 @@
   .grantInfo {
     padding: 2em;
     color: antiquewhite;
-    background-color: darkslategray;
+    background-color: rgb(253, 253, 253);
     border-radius: 2em;
     max-width: 65ch;
   }
+  .footer {
+    padding: 20px 0;
+    background-color: #fff; /* Adjust color as needed */
+}

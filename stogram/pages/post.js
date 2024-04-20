@@ -43,9 +43,10 @@ const client = new Web3Storage({ token: Web_STORAGE_TOKEN })
 
   return (
     <><Navbar />
-    <main className='my-16 rounded-xl bg-slate-900 text-green-400 mx-72'>
+    <div className="flex justify-center items-center h-screen">
+    <main className='my-16 rounded-xl bg-gray-200 text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px;'>
 <div className='flex justify-center items-center my-6 mx-4'>
-<div className='rounded-2xl bg-slate-900'>
+<div className='rounded-2xl bg-gray-200'>
 <div className=' text-3xl my-4 mx-8 cursor-pointer font-mono font-semibold'>
 Upload Posts</div>
 </div>
@@ -63,9 +64,9 @@ Upload Posts</div>
 
 
 <div className='flex justify-center items-center my-4 mx-6'>
-<div className='rounded-2xl bg-slate-800'>
-<div className=' text-2xl my-2 mx-3 cursor-pointer font-mono font-semibold hover:text-white'>
-<input className="px-8 my-2 cursor-pointer" type='submit' value='Submit' id='submit' />
+<div className='rounded-2xl bg-gray-200 outline outline-offset-2 outline-pink-300 outline-width:4px'>
+<div className=' text-2xl my-2 mx-3 cursor-pointer font-mono font-semibold text-black hover:text-pink-500'>
+<input className="px-8 my-2 cursor-pointer" type='submit' value='Post' id='submit' />
 </div>
 </div>
 </div>
@@ -73,12 +74,12 @@ Upload Posts</div>
 </form>
 </div>
 </main>
-
+</div>
 <div id='output'>
         
   {messages.map((m, i) => <div key={m + i}>{m}</div>)}
    </div>
-   <Footer/>
+   {/* <Footer/> */}
    </>
   )
 }

@@ -40,7 +40,7 @@ width="1100"
 height="400"/>
 
 </div>  */}
-<Footer/>
+{/* <Footer/> */}
    </>
   )
 }

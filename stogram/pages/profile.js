@@ -22,13 +22,15 @@ export default function profile()
   <Navbar/>
 
   <div className=' flex justify-center'>
-    <div className=' text-3xl font-mono font-semibold text-green-500 my-6'>
+    <div className=' text-3xl font-mono font-semibold text-pink-500 my-6'>
         Your Posts
     </div>
   </div>
+
   <div className='flex'>
   <div className='grid grid-cols-4 gap-2 '>
-  <div className=' bg-gray-900 text-white mx-10 my-2 rounded-xl  '>
+    
+  <div className=' bg-gray-200 text-white mx-20 my-2 rounded-xl outline outline-offset-2 outline-pink-300 outline-width:4px '>
                 <div className="mx-1 my-1 cursor-pointer ">
                     <a href='https://bafybeietu4bacniu3vfiparmvxqmd4oclzdiieqva2gaz2exyif46ne4tu.ipfs.dweb.link/Logo.png'>
                     <Image src={Logo} 
@@ -36,7 +38,7 @@ export default function profile()
                     </Image></a>
                     </div>
                     <div className=' flex justify-center'>
-                    <div className=' text-green-500 font-mono my-2'>
+                    <div className=' text-pink-500 font-mono my-2'>
                         <a href='https://bafybeietu4bacniu3vfiparmvxqmd4oclzdiieqva2gaz2exyif46ne4tu.ipfs.dweb.link'>
                         View on IPFS
                         </a>
@@ -44,7 +46,7 @@ export default function profile()
                     </div>
                     </div>
 
-                    <div className=' bg-gray-900 text-white mx-10 my-2 rounded-xl  '>
+                    <div className=' bg-gray-200 text-white mx-20 my-2 rounded-xl outline outline-offset-2 outline-pink-300 outline-width:4px '>
                 <div className="mx-1 my-1 cursor-pointer">
                 <a href='https://bafybeiab2w2lb6dugorkaxoi3fsl7666bh2m2erxpk7ahvgi5voxvxcvtu.ipfs.dweb.link/photo_2023-04-28_20-29-12.jpg'>
                     <Image src={pic} 
@@ -52,7 +54,7 @@ export default function profile()
                     </Image></a>
                     </div>
                     <div className=' flex justify-center'>
-                    <div className=' text-green-500 font-mono my-2'>
+                    <div className=' text-pink-500 font-mono my-2'>
                         <a href='https://bafybeiab2w2lb6dugorkaxoi3fsl7666bh2m2erxpk7ahvgi5voxvxcvtu.ipfs.dweb.link'>
                         View on IPFS
                         </a>
@@ -63,7 +65,7 @@ export default function profile()
 
     </div>
   </div>
-  <Footer/>
+  {/* <Footer/> */}
   </>
     )
 }
