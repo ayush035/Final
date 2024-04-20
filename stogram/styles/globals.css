@@ -26,8 +26,8 @@ html, body {
   min-height: 100vh;
 }
 body {
-  padding-left: 40px; /* Increase the left padding */
-  padding-right: 40px; /* Increase the right padding */
+  padding-left: 80px; /* Increase the left padding */
+  padding-right: 80px; /* Increase the right padding */
   flex: 1;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
