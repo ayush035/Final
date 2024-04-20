@@ -44,7 +44,7 @@ const client = new Web3Storage({ token: Web_STORAGE_TOKEN })
   return (
     <><Navbar />
     <div className="flex justify-center items-center h-screen">
-    <main className='my-16 rounded-xl bg-gray-200 text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px;'>
+    <main className=' rounded-xl bg-gray-200 text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px;'>
 <div className='flex justify-center items-center my-6 mx-4'>
 <div className='rounded-2xl bg-gray-200'>
 <div className=' text-3xl my-4 mx-8 cursor-pointer font-mono font-semibold'>
@@ -59,7 +59,7 @@ Upload Posts</div>
 <label className='my-2 font-mono text-md font-semibold' htmlFor='filepicker'>Pick files to store</label>
 <input type='file' id='filepicker' name='fileList' onChange={e => setFiles(e.target.files)} multiple required />
 <label className='my-2 font-mono text-md font-semibold'>Description</label>
-<input className='text-black px-8 flex w-10/12 ' type='text' placeholder='Hey,there !'/>
+<input className='text-pink-500 rounded-md px-8 flex w-10/12 outline outline-offset-2 outline-pink-300 outline-width:4px; ' type='text' placeholder='Hey,there !'/>
 
 
 
