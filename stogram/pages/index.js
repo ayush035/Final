@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar'
 // import Upload from '@/components/Upload'
 // const inter = Inter({ subsets: ['latin'] })
 import d from '../public/d.jpg'
-import e from '../public/e.jpeg'
+import e from '../public/e.jpg'
 import shield from '../public/shield.png'
 import Footer from '@/components/Footer'
 
