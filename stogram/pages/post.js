@@ -44,9 +44,9 @@ const client = new Web3Storage({ token: Web_STORAGE_TOKEN })
   return (
     <><Navbar />
     <div className="flex justify-center items-center h-screen">
-    <main className=' rounded-xl bg-gray-200 text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px;'>
+    <main className='rounded-xl bg-white  text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px; shadow-2xl'>
 <div className='flex justify-center items-center my-6 mx-4'>
-<div className='rounded-2xl bg-gray-200'>
+<div className='rounded-2xl bg-white'>
 <div className=' text-3xl my-4 mx-8 cursor-pointer font-mono font-semibold'>
 Upload Posts</div>
 </div>
