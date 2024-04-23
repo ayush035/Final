@@ -2,10 +2,9 @@ import React, { useState, useReducer } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import { Web3Storage } from 'web3.storage'
-import stogram from '../public/stogram.jpg'
 import pic from '../public/pic.jpg'
 import Footer from '../components/Footer'
-
+import stogram from '@/public/stogram.JPG'
 
 
 
