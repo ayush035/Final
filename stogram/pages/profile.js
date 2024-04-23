@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import { Web3Storage } from 'web3.storage'
-import stogram from '@/public/stogram.jpg' 
+import logo from '@/public/logo.jpg'
 // import pic from '../public/pic.jpg'
 // import Footer from '../components/Footer'
 
@@ -32,7 +32,7 @@ export default function profile()
   <div className=' bg-white shadow-2xl text-white mx-20 my-2 rounded-xl outline outline-offset-2 outline-pink-300 outline-width:4px '>
                 <div className="mx-1 my-1 cursor-pointer ">
                     <a href='https://bafybeietu4bacniu3vfiparmvxqmd4oclzdiieqva2gaz2exyif46ne4tu.ipfs.dweb.link/Logo.png'>
-                    <Image src={stogram} 
+                    <Image src={logo} 
                     alt='' height="260px" width='400px'>
                     </Image></a>
                     </div>
