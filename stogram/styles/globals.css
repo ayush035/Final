@@ -37,3 +37,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+hr {
+  height: 2px;
+  background-color: rgb(181, 174, 174);
+  border: none;
+  margin: 20px 0;
+  opacity: 0.6;
+}

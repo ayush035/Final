@@ -25,3 +25,8 @@
     padding: 20px 0;
     background-color: #fff; /* Adjust color as needed */
 }
+ .container {
+  display: flex;
+  justify-content: center;
+  
+}

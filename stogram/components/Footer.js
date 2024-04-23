@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 export default function Footer() {
 return (
 <>
-    <hr className='my-6 mx-20' />
+    {/* <hr className='my-6 mx-20' /> */}
     <footer className={styles.footer}>
         
     <div className='flex items-center justify-center space-x-4 cursor-pointer '>
