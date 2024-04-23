@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import { Web3Storage } from 'web3.storage'
 import pic from '../public/pic.jpg'
 import Footer from '../components/Footer'
-import stogram from '@/public/stogram.JPG'
+import stogram from '@/public/stogram.jpg'; 
 
 
 
