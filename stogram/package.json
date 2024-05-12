@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^1.0.0",
+    "@web3-storage/w3up-client": "^13.0.1",
     "autoprefixer": "10.4.14",
     "next": "13.4.3",
     "postcss": "8.4.23",
