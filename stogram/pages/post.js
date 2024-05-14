@@ -14,7 +14,7 @@ export default function Home () {
 
     showMessage('Posting')
     const Web_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDUxODdDYTU3ZWU1MEEwOWZmOUI2NDAzMDRiQTlDNEZBOTE3MjlDM0YiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODQ3NzU2NjQ4MjYsIm5hbWUiOiJBeXVzaCJ9.rR03Th49YPmOVoy8n8teXTTImO1P5wz4BxAFDFAb3wM'
-const client = new Web3Storage({ token: Web_STORAGE_TOKEN })
+    const client = new Web3Storage({ token: Web_STORAGE_TOKEN })
     // const client = new Web3Storage({ token })
 
     showMessage('> 🤖 chunking and hashing the files (in your browser!) to calculate the Content ID')
