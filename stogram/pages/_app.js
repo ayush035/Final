@@ -21,8 +21,7 @@ import { publicProvider } from 'wagmi/providers/public';
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
-    polygon,
-    optimism,
+    
     arbitrum,
     zkSync,
     zkSyncTestnet,
