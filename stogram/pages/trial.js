@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useSignMessage } from 'wagmi';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function Home() {
   const [contract, setContract] = useState(null);
@@ -180,7 +182,9 @@ export default function Home() {
   };
 
   return (
+
     <div>
+      <Navbar/>
       <h1>Username Registry</h1>
       <ConnectButton />
       {isConnected && (
