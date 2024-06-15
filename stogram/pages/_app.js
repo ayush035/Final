@@ -20,18 +20,16 @@ import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    mainnet,
     
-    arbitrum,
     zkSync,
-    zkSyncTestnet,
+   
 
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
   ],
   [publicProvider()]
 );
 
-const projectId = 'YOUR_PROJECT_ID';
+const projectId = '9c17dc69becbe137fe50e55e31598852';
 
 const { wallets } = getDefaultWallets({
   appName: 'RainbowKit demo',

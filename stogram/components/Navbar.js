@@ -19,7 +19,7 @@ export default function Navbar() {
         </div>
         <div className='hover:text-black delay-50  text-md font-semibold font-mono'>
         
-            <Link href="/explore">Explore</Link></div>
+            <Link href="/trial">Naming service</Link></div>
         
         
             {/* <Link href="/search">Search</Link> */}
