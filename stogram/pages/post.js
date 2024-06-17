@@ -62,7 +62,6 @@ Upload Posts</div>
 <input className='text-pink-500 rounded-md px-8 flex w-10/12 outline outline-offset-2 outline-pink-300 outline-width:4px; ' type='text' placeholder='Hey,there !'/>
 
 
-
 <div className='flex justify-center items-center my-4 mx-6'>
 <div className='rounded-2xl bg-gray-200 outline outline-offset-2 outline-pink-300 outline-width:4px'>
 <div className=' text-2xl my-2 mx-3 cursor-pointer font-mono font-semibold text-black hover:text-pink-500'>
