@@ -31,6 +31,10 @@ export default function Navbar() {
         <div className='hover:text-black delay-50 text-md font-semibold font-mono '>
     
             <Link href="/profile">Profile</Link></div>
+
+            <div className='hover:text-black delay-50  text-md font-semibold font-mono'>
+        
+            <Link href="/explore">Explore</Link></div>
               {/* <div className=' mx-2 my-2 '> */}            
         <ConnectButton/>
             </ul>

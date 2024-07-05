@@ -1,3 +1,4 @@
+// lib/contract.js
 import { ethers } from 'ethers';
 
 const contractAddress = '0x5594a82F09953fd753f171A6AfF00763Dbfa122e';
@@ -131,6 +132,6 @@ const abi = [
   }
 ];
 
-export const getContract = (signerOrProvider) => {
-  return new ethers.Contract(contractAddress, abi, signerOrProvider);
+export const getContract = (providerOrSigner) => {
+  return new ethers.Contract(contractAddress, abi, providerOrSigner);
 };
