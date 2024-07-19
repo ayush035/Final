@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import logo from '@/public/logo.jpg'
 import Image from 'next/image'
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -21,9 +22,9 @@ export default function Home() {
                     </div>
                     <div className=' flex justify-center'>
                     <div className=' text-pink-500 font-mono my-2'>
-                       <button>
+                       <Link href="/donate1">
                         Donate
-                       </button>
+                       </Link>
                     </div>
                     </div>
                     </div>
