@@ -7,6 +7,11 @@ export default function Navbar() {
     return (
         
             <>
+                        <div className=" h-6 my-4 px-8  text-black mx-16 rounded-lg font-mono font-semibold text-center" >
+            We are live on GIV-ARB QF Round ! Donate <Link href="https://giveth.io/project/stogram" legacyBehavior><a className="text-pink-500">here ↗️</a></Link>
+
+            </div>
+            <hr  />
 
         
             <nav className=' flex justify-between h-12 text-pink-500 bg-white   font-bold' >
