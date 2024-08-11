@@ -15,16 +15,52 @@ import {
   ledgerWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { zkSync, goerli, arbitrum } from 'wagmi/chains';
+import { zkSync, goerli, arbitrum}  from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+import { http } from 'viem';
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
+
+ const zetachaintestnet = {
+  id: 7001,
+  name: 'Zetachain Testnet',
+  network: 'zetachain-testnet',
+  nativeCurrency: {
+    name: 'ZETA',
+    symbol: 'Zeta',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {http: ['https://zeta-chain-testnet.drpc.org'],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: 'Custom Explorer',
+      url: 'https://custom-explorer.com',
+    },
+  },
+  testnet: true, // Indicate that this is a testnet
+};
+
+const { chains, publicClient, webSocketPublicClient, provider } = configureChains(
   [
     zkSync,
     arbitrum,
+   
+    // zetachaintestnet,
+
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
   ],
-  [publicProvider()]
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: chain.rpcUrls.default.http,
+      }),
+    }),
+
+  publicProvider(),
+  ]
 );
 
 const projectId = '9c17dc69becbe137fe50e55e31598852';

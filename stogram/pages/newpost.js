@@ -76,6 +76,13 @@ Upload Posts</div>
 </div>
 </div>
 </div>
+<div className='flex justify-center items-center my-4 mx-6'>
+<div className='rounded-2xl bg-gray-200 outline outline-offset-2 outline-pink-300 outline-width:4px'>
+<div className=' text-2xl my-2 mx-3 cursor-pointer font-mono font-semibold text-black hover:text-pink-500'>
+<input className="px-8 my-2 cursor-pointer" type='submit' value='Mint as a NFT' id='submit' />
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>
