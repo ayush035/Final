@@ -11,20 +11,20 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, http } from 'wagmi'
-import { mainnet, zetachain, zksync, arbitrum } from 'wagmi/chains'
+import { mainnet, zetachain, zksync, arbitrum, zetachainAthensTestnet } from 'wagmi/chains'
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
-
- 
 
 
 
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9c17dc69becbe137fe50e55e31598852',
-  chains: [zetachain, zksync, arbitrum],
+  chains: [zetachain, zksync, arbitrum, zetachainAthensTestnet],
   transports: {
     [arbitrum.id]: http(),
     [zetachain.id]: http(),
+    [zetachainAthensTestnet.id]: http(),
+
 
   },
 })
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
 <WagmiProvider config={config}>
 <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-        
+        initialChain={4}
         theme={lightTheme({
           accentColor: '#FF69B4',
           accentColorForeground: 'white',
