@@ -9,97 +9,36 @@ import {
   connectorsForWallets,
   lightTheme
 } from '@rainbow-me/rainbowkit';
-import {
-  argentWallet,
-  trustWallet,
-  ledgerWallet,
-} from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { zkSync, goerli, arbitrum}  from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
-import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
-import { http } from 'viem';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { WagmiProvider, http } from 'wagmi'
+import { mainnet, zetachain, zksync, arbitrum } from 'wagmi/chains'
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'
+
+ 
 
 
- const zetachaintestnet = {
-  id: 7001,
-  name: 'Zetachain Testnet',
-  network: 'zetachain-testnet',
-  nativeCurrency: {
-    name: 'ZETA',
-    symbol: 'Zeta',
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: {http: ['https://zeta-chain-testnet.drpc.org'],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: 'Custom Explorer',
-      url: 'https://custom-explorer.com',
-    },
-  },
-  testnet: true, // Indicate that this is a testnet
-};
 
-const { chains, publicClient, webSocketPublicClient, provider } = configureChains(
-  [
-    zkSync,
-    arbitrum,
-   
-    // zetachaintestnet,
-
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
-  ],
-  [
-    jsonRpcProvider({
-      rpc: (chain) => ({
-        http: chain.rpcUrls.default.http,
-      }),
-    }),
-
-  publicProvider(),
-  ]
-);
-
-const projectId = '9c17dc69becbe137fe50e55e31598852';
-
-const { wallets } = getDefaultWallets({
+const config = getDefaultConfig({
   appName: 'RainbowKit demo',
-  projectId,
-  chains,
-});
+  projectId: '9c17dc69becbe137fe50e55e31598852',
+  chains: [zetachain, zksync, arbitrum],
+  transports: {
+    [arbitrum.id]: http(),
+    [zetachain.id]: http(),
 
-const demoAppInfo = {
-  appName: 'Rainbowkit Demo',
-};
-
-const connectors = connectorsForWallets([
-  ...wallets,
-  {
-    groupName: 'Other',
-    wallets: [
-      argentWallet({ projectId, chains }),
-      trustWallet({ projectId, chains }),
-      ledgerWallet({ projectId, chains }),
-    ],
   },
-]);
+})
+const queryClient = new QueryClient()
 
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-  webSocketPublicClient,
-});
+
+
 
 function MyApp({ Component, pageProps }) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider
-        appInfo={demoAppInfo}
-        chains={chains}
+<WagmiProvider config={config}>
+<QueryClientProvider client={queryClient}>
+        <RainbowKitProvider
+        
         theme={lightTheme({
           accentColor: '#FF69B4',
           accentColorForeground: 'white',
@@ -113,8 +52,10 @@ function MyApp({ Component, pageProps }) {
           <Footer />
         </div>
       </RainbowKitProvider>
-    </WagmiConfig>
-  );
+      </QueryClientProvider>
+      </WagmiProvider>
+
+    );
 }
 
 export default MyApp;

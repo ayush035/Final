@@ -7,11 +7,11 @@ export default function Navbar() {
     return (
         
             <>
-                        {/* <div className=" h-6 my-4 px-8  text-black mx-16 rounded-lg font-mono font-semibold text-center" >
-            We are live on Gitcoin Grants Round 21 ! Donate <Link href="https://shorturl.at/Q3P6O" legacyBehavior><a className="text-pink-500">here ↗️</a></Link>
+                        <div className=" h-6 my-4 px-8  text-black mx-16 rounded-lg font-mono font-semibold text-center" >
+           Thankyou for supporting us on GG21 and Giv-ARB QF rounds! Your love and support means world to us .
 
             </div>
-            <hr  /> */}
+            <hr  />
 
         
             <nav className=' flex justify-between h-12 text-pink-500 bg-white   font-bold' >
