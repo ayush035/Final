@@ -23,7 +23,7 @@ export default function Home() {
                     <div className=' flex justify-center'>
                     <div className=' text-pink-500 font-mono my-2'>
                        <Link href="/donate1">
-                        Donate
+                        Donate/Stake
                        </Link>
                     </div>
                     </div>
