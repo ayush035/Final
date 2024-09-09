@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import logo from '@/public/logo.jpg'
 import Image from 'next/image'
 
-
+import Donate from '@/components/Donate'
 export default function Fund() {
     return(
 <>
@@ -27,9 +27,10 @@ Donate
 <div>
 <input className='mx-10 font-mono pb-2 text-black text-xl bg-gray-200 rounded-lg my-4' placeholder='  $USDC ' type='number' />
 </div>
-<button className ="mx-10 font-mono text-white text-xl font-bold bg-pink-400 rounded-lg my-2 px-2 py-1">
+{/* <button className ="mx-10 font-mono text-white text-xl font-bold bg-pink-400 rounded-lg my-2 px-2 py-1">
  Donate 
-   </button>
+   </button> */}
+   <Donate/>
    <div className= "mx-10 font-mono text-black text-xl font-bold">
 Stake on NFT to earn rewards
 </div>
