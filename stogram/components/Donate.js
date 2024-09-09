@@ -6,9 +6,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
  export default function SuperfluidDemo() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState('');
-//   const [tokenAddress, setTokenAddress] = useState('');
-//   const [receiverAddress, setReceiverAddress] = useState('');
-//   const [flowRate, setFlowRate] = useState('');
   const [adminAddress, setAdminAddress] = useState('');
   const [message, setMessage] = useState('');
   const [isAvailable, setIsAvailable] = useState(null);
@@ -22,7 +19,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
   const tokenAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
   const receiverAddress = '0xC72fa67241b2Ab95776DB23Cb27A845d4290d75B';
   const flowRate='3805175038052 wei/second';
-  // Simplified ABIs with only the functions we need
+
   const CFAv1ForwarderABI = [
   "function createFlow(address token, address sender, address receiver, int96 flowRate, bytes memory userData) external returns (bool)"
   ];
@@ -108,37 +105,11 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
       {!isConnected ? (
         <div className='text-black'> please connect wallet to continue</div>
       ) : ( <>
-        {/* <input
-          placeholder="Token Address"
-          value={tokenAddress}
-          onChange={(e) => setTokenAddress('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' )}
-          style={{ width: '100%', padding: '10px', margin: '10px 0' }}
-        />
-        
-        <h2 style={{ fontSize: '20px', fontWeight: 'bold' }}>Create Stream</h2>
-        <input
-          placeholder="Receiver Address"
-          value={receiverAddress}
-          onChange={(e) => setReceiverAddress('0xC72fa67241b2Ab95776DB23Cb27A845d4290d75B')}
-          style={{ width: '100%', padding: '10px', margin: '10px 0' }}
-        /> */}
-        {/* <input
-          placeholder="Flow Rate"
-          value={flowRate}
-          onChange={(e) => setFlowRate(e.target.value)}
-          style={{ width: '100%', padding: '10px', margin: '10px 0' }}
-        /> */}
+    
 
         <button onClick={createStream} className="mx-10 font-mono text-white text-xl font-bold bg-pink-400 rounded-lg my-2 px-2 py-1"> Stream donation </button>
         
-        {/* <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>Create Pool</h2>
-        <input
-          placeholder="Admin Address"
-          value={adminAddress}
-          onChange={(e) => setAdminAddress(e.target.value)}
-          style={{ width: '100%', padding: '10px', margin: '10px 0' }}
-        />
-        <button onClick={createPool} style={{ backgroundColor: 'blue', color: 'white', padding: '10px', borderRadius: '5px', border: 'none', cursor: 'pointer', width: '100%' }}>Create Pool</button> */}
+
   
         {message && <p style={{ marginTop: '20px', textAlign: 'center' }}>{message}</p>}
         </>
