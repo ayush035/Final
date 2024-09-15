@@ -11,7 +11,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, http } from 'wagmi'
-import { mainnet, zetachain, zksync, arbitrum, zetachainAthensTestnet, sepolia } from 'wagmi/chains'
+import { mainnet, zetachain, zksync, arbitrum, zetachainAthensTestnet, sepolia, celo } from 'wagmi/chains'
 import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 
 const avalanche = {
@@ -38,11 +38,15 @@ const avalanche = {
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9c17dc69becbe137fe50e55e31598852',
-  chains: [sepolia, zksync, arbitrum],
+  chains: [sepolia, zksync, arbitrum, celo],
   transports: {
     [arbitrum.id]: http(),
     [zetachain.id]: http(),
     [zetachainAthensTestnet.id]: http(),
+    [zksync.id]: http(),
+    [celo.id]: http(),
+
+
 
 
   },
