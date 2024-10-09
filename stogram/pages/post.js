@@ -44,27 +44,27 @@ export default function Home () {
   return (
     <><Navbar />
     <div className="flex justify-center items-center h-screen">
-    <main className='rounded-xl bg-white  text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px; shadow-2xl'>
+    <main className='rounded-xl bg-black  text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 outline-width:8px; shadow-2xl'>
 <div className='flex justify-center items-center my-6 mx-4'>
-<div className='rounded-2xl bg-white'>
-<div className=' text-3xl my-4 mx-8 cursor-pointer font-mono font-semibold'>
+<div className='rounded-2xl bg-black'>
+<div className=' text-3xl my-4 mx-8 cursor-pointer font-sans font-semibold'>
 Upload Posts</div>
 </div>
 </div>
 <div className=" p-2 mx-8 right flex flex-col">
 <form className='px-8' id='upload-form' onSubmit={handleSubmit}>
 <div className=" p-2 mx-4 right flex flex-col">
-{/* <label className='my-2 font-mono text-md font-semibold' htmlFor='token'>Paste your web3.storage API token here</label> */}
+{/* <label className='my-2 font-sans text-md font-semibold' htmlFor='token'>Paste your web3.storage API token here</label> */}
 {/* <input className='text-black px-8 flex w-10/12' type='password' id='token' onChange={e => setToken(e.target.value)} required /> */}
-<label className='my-2 font-mono text-md font-semibold' htmlFor='filepicker'>Pick files to store</label>
+<label className='my-2 font-sans text-md font-semibold' htmlFor='filepicker'>Pick files to store</label>
 <input type='file' id='filepicker' name='fileList' onChange={e => setFiles(e.target.files)} multiple required />
-<label className='my-2 font-mono text-md font-semibold'>Description</label>
+<label className='my-2 font-sans text-md font-semibold'>Description</label>
 <input className='text-pink-500 rounded-md px-8 flex w-10/12 outline outline-offset-2 outline-pink-300 outline-width:4px; ' type='text' placeholder='Hey,there !'/>
 
 
 <div className='flex justify-center items-center my-4 mx-6'>
 <div className='rounded-2xl bg-gray-200 outline outline-offset-2 outline-pink-300 outline-width:4px'>
-<div className=' text-2xl my-2 mx-3 cursor-pointer font-mono font-semibold text-black hover:text-pink-500'>
+<div className=' text-2xl my-2 mx-3 cursor-pointer font-sans font-semibold text-black hover:text-pink-500'>
 <input className="px-8 my-2 cursor-pointer" type='submit' value='Post' id='submit' />
 </div>
 </div>

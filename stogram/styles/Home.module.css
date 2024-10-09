@@ -1,10 +1,10 @@
 .container {
-    background-color: #fcf7f7;
+    background-color: #000000;
     min-height: 100vh;
   }
   
   .main {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 0 4em;
   }
   
@@ -16,14 +16,14 @@
   
   .grantInfo {
     padding: 2em;
-    color: antiquewhite;
-    background-color: rgb(253, 253, 253);
+    color: rgb(10, 10, 10);
+    background-color: rgb(0, 0, 0);
     border-radius: 2em;
     max-width: 65ch;
   }
   .footer {
     padding: 20px 0;
-    background-color: #fff; /* Adjust color as needed */
+    background-color: #000000; /* Adjust color as needed */
 }
  .container {
   display: flex;

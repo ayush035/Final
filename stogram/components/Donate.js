@@ -107,7 +107,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
       ) : ( <>
     
 
-        <button onClick={createStream} className="mx-10 font-mono text-white text-xl font-bold bg-pink-400 rounded-lg my-2 px-2 py-1"> Stream donation </button>
+        <button onClick={createStream} className="mx-10 font-sans text-white text-xl font-bold bg-pink-400 rounded-lg my-2 px-2 py-1"> Stream donation </button>
         
 
   

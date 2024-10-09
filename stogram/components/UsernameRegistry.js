@@ -58,10 +58,10 @@ const UsernameRegistry = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <main className="rounded-xl bg-white text-pink-500 mx-72 outline outline-offset-2 outline-pink-300 shadow-2xl">
+      <main className="rounded-xl bg-black text-purple-300 mx-72 outline outline-offset-2 outline-zinc-700 drop-shadow-lg shadow-purple-300">
         <div className="flex justify-center items-center my-6 mx-4">
-          <div className="rounded-2xl bg-white">
-            <div className="text-3xl my-4 px-28 cursor-pointer font-mono font-semibold">Mint your name</div>
+          <div className="rounded-2xl bg-black">
+            <div className="text-3xl my-4 px-28 cursor-pointer font-sans font-semibold">Mint your name</div>
             {isConnected ? (
               <>
                 <div className="px-16">
@@ -69,13 +69,13 @@ const UsernameRegistry = () => {
                     id="username"
                     name="username"
                     type="text"
-                    className="outline outline-offset-2 outline-pink-300 rounded-lg my-4 font-mono text-md font-semibold text-pink-500"
+                    className="outline outline-offset-2 outline-zinc-700 rounded-lg my-4 font-sans text-md font-semibold text-purple-400 px-2 "
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Enter username"
                   />
                 </div>
-                <div className="px-16 font-semibold font-mono">
+                <div className="px-16 font-semibold font-sans">
                   <button onClick={checkAvailability}>Check Availability</button>
                 </div>
                 {isAvailable !== null && (
@@ -83,9 +83,9 @@ const UsernameRegistry = () => {
                 )}
                 <br />
                 <div className="flex justify-center items-center my-4 mx-8">
-                  <div className="rounded-2xl bg-gray-100 outline outline-offset-2 outline-pink-300">
-                    <div className="text-2xl my-2 mx-4 cursor-pointer font-mono font-semibold text-black hover:text-pink-500">
-                      <button onClick={mintUsername} disabled={!username || !isAvailable} className="py-2">
+                  <div className="rounded-2xl bg-purple-400 outline outline-offset-2 outline-zinc-700 hover:bg-white">
+                    <div className="text-2xl my-2 mx-4 cursor-pointer font-sans font-semibold text-white hover:text-black hover:bg-white">
+                      <button onClick={mintUsername} disabled={!username || !isAvailable} className="py-2 curson-pointer">
                         Mint
                       </button>
                     </div>

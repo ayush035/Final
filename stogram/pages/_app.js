@@ -7,7 +7,7 @@ import {
   RainbowKitProvider,
   getDefaultWallets,
   connectorsForWallets,
-  lightTheme
+  darkTheme
 } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, http } from 'wagmi'
@@ -62,8 +62,8 @@ function MyApp({ Component, pageProps }) {
 <QueryClientProvider  client={queryClient}>
         <RainbowKitProvider 
         initialChain={4}
-        theme={lightTheme({
-          accentColor: '#FF69B4',
+        theme={darkTheme({
+          accentColor: '#D16CEA',
           accentColorForeground: 'white',
           borderRadius: 'medium',
         })}

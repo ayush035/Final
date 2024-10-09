@@ -31,25 +31,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
   "function createPool(address token, address admin, (uint32 transferabilityForUnitsOwner, bool distributionFromAnyAddress) memory poolConfig) external returns (bool, address)"
   ];
 
-//   const connectWallet = async () => {
-//     if (typeof window.ethereum !== 'undefined') {
-//       try {
-//         await window.ethereum.request({ method: 'eth_requestAccounts' });
-//         const provider = new ethers.providers.Web3Provider(window.ethereum);
-//         setProvider(provider);
-//         const signer = provider.getSigner();
-//         const address = await signer.getAddress();
-//         setAccount(address);
-//         setMessage(`Connected to ${address}`);
-//       } catch (error) {
-//         console.error('Failed to connect wallet:', error);
-//         setMessage('Failed to connect wallet. Please try again.');
-//       }
-//     } else {
-//       setMessage('Please install Metamask to use this feature.');
-//     }
-//   };
-
   const createStream = async () => {
     if (!isConnected) {
       setMessage('Please connect your wallet first.');

@@ -1,45 +1,53 @@
 import Link from "next/link";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import  '@/styles/Home.module.css'
-
+import stolog from '@/public/stolog.jpg'
+import Image from "next/image";
 export default function Navbar() {
 
     return (
         
             <>
-                        <div className=" h-6 my-4 px-8  text-black mx-16 rounded-lg font-mono font-semibold text-center" >
-The website is under development, we are Shipping some updates stay tuned!🚀
-            </div>
-            <hr  />
-
-        
-            <nav className=' flex justify-between h-12 text-pink-500 bg-white   font-bold' >
-                <span className='mx-20 my-2 flex text-pink-500 text-2xl  '><Link href={"/"}>Stogram</Link></span>
-                <ul className= 'px-2 py-3 flex space-x-10 mx-12 '>
+                        {/* <div className=" h-10 my-4   text-white  font-sans  text-center bg-purple-400 text-xl" >
+The website is under development, We are shipping some updates stay tuned! 🚀
+            </div> */}
+          
+            <nav className=' flex justify-between h-12 text-white   font-semibold  fixed top-0 left-0 w-full z-50 backdrop-blur-md my-2 ' >
+                <span className='mx-24  flex text-purple-400 text-2xl  '>
+                    
+                    <Link href={"/"}>
+                    <Image
+                    src = {stolog}
+                    alt=''
+                 width="160"
+                 height="160"/>
+                        
+                        
+                      </Link></span>
+                <ul className= 'px-2 py-3 flex space-x-10 mx-24 '>
                     
 
              <div>
-        <input className='px-4 rounded-lg text-smfont-semibold font-mono h-8 outline outline-offset-2 outline-slate-300 outline-width:4px hover:outline-pink-500 outline-width: 4px' type="search" placeholder="Search..." />
+        {/* <input className='px-4 rounded-lg text-smfont-semibold font-sans h-8 outline outline-offset-2 outline-slate-300 outline-width:4px hover:outline-purple-400 outline-width: 4px' type="search" placeholder="Search..." /> */}
         </div>
-        <div className='hover:text-black delay-50  text-md font-semibold font-mono'>
+        <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
-            <Link href="/search">Naming service</Link></div>
+            <Link href="/naming">Username</Link></div>
         
         
             {/* <Link href="/search">Search</Link> */}
 
-            <div className='hover:text-black delay-50  text-md font-semibold font-mono'>
+            <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
             <Link href="/newpost">Post</Link></div>
 
-        <div className='hover:text-black delay-50 text-md font-semibold font-mono '>
+        <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
     
             <Link href="/profile">Profile</Link></div>
 
-            <div className='hover:text-black delay-50  text-md font-semibold font-mono'>
+            <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
             <Link href="/explore">Explore</Link></div>
-              {/* <div className=' mx-2 my-2 '> */}            
         <ConnectButton/>
             </ul>
         </nav>
