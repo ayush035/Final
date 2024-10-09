@@ -48,7 +48,8 @@ The website is under development, We are shipping some updates stay tuned! 🚀
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
             <Link href="/explore">Explore</Link></div>
-        <ConnectButton/>
+            <div className="-my-2">
+        <ConnectButton/></div>
             </ul>
         </nav>
         
