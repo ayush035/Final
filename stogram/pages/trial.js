@@ -1,212 +1,198 @@
-// pages/index.js
-
-import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount, useSignMessage } from 'wagmi';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-
-export default function Home() {
-  const [contract, setContract] = useState(null);
-  const [username, setUsername] = useState('');
-  const [availability, setAvailability] = useState(null);
-  const [message, setMessage] = useState('');
-
-  const { isConnected } = useAccount();
-  const { data: signer } = useSignMessage();
-
-  useEffect(() => {
-    if (signer) {
-      const contractAddress = "0x5594a82F09953fd753f171A6AfF00763Dbfa122e" ; 
-      const contractABI = 
-        [
-          {
-            "anonymous": false,
-            "inputs": [
-              {
-                "indexed": true,
-                "internalType": "address",
-                "name": "user",
-                "type": "address"
-              },
-              {
-                "indexed": false,
-                "internalType": "string",
-                "name": "username",
-                "type": "string"
-              }
-            ],
-            "name": "UsernameMinted",
-            "type": "event"
-          },
-          {
-            "anonymous": false,
-            "inputs": [
-              {
-                "indexed": true,
-                "internalType": "address",
-                "name": "user",
-                "type": "address"
-              },
-              {
-                "indexed": false,
-                "internalType": "string",
-                "name": "username",
-                "type": "string"
-              }
-            ],
-            "name": "UsernameNotAvailable",
-            "type": "event"
-          },
-          {
-            "inputs": [
-              {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-              }
-            ],
-            "name": "addressToUsername",
-            "outputs": [
-              {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          },
-          {
-            "inputs": [
-              {
-                "internalType": "address",
-                "name": "_address",
-                "type": "address"
-              }
-            ],
-            "name": "getUsername",
-            "outputs": [
-              {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          },
-          {
-            "inputs": [
-              {
-                "internalType": "string",
-                "name": "_username",
-                "type": "string"
-              }
-            ],
-            "name": "isUsernameAvailable",
-            "outputs": [
-              {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          },
-          {
-            "inputs": [
-              {
-                "internalType": "string",
-                "name": "_username",
-                "type": "string"
-              }
-            ],
-            "name": "mintUsername",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-          },
-          {
-            "inputs": [
-              {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-              }
-            ],
-            "name": "usernameToAddress",
-            "outputs": [
-              {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          }
-        ]
-;
-      const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
-      setContract(contractInstance);
-    }
-  }, [signer]);
-
-  const handleCheckAvailability = async () => {
-    if (contract && username) {
-      try {
-        const isAvailable = await contract.isUsernameAvailable(username);
-        setAvailability(isAvailable);
-      } catch (error) {
-        console.error('Error checking username availability:', error);
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
+const contractAddress = "0xC3a3e3419ED038B261dE1BF8057558F85b6e33D8"; // Deployed contract address
+const contractABI = [
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "username",
+        "type": "string"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
       }
+    ],
+    "name": "UsernameMinted",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wallet",
+        "type": "address"
+      }
+    ],
+    "name": "checkUsernameFromRainbow",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wallet",
+        "type": "address"
+      }
+    ],
+    "name": "getUsernameFromWallet",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_username",
+        "type": "string"
+      }
+    ],
+    "name": "isUsernameAvailable",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_username",
+        "type": "string"
+      }
+    ],
+    "name": "mintUsername",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "usernames",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "walletToUsername",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
+
+
+const MintUsername = () => {
+  const [username, setUsername] = useState('');
+  const [status, setStatus] = useState('');
+
+  // Connect to Ethereum provider (MetaMask)
+  const requestAccount = async () => {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+  };
+
+  // Check username availability
+  const checkUsernameAvailability = async () => {
+    if (!username) return;
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(contractAddress, contractABI, provider);
+      const isAvailable = await contract.isUsernameAvailable(username);
+      return isAvailable;
     }
   };
 
-  const handleMintUsername = async () => {
-    if (contract && username && availability) {
+  // Mint the username
+  const mintUsername = async () => {
+    if (!username) return;
+    if (typeof window.ethereum !== 'undefined') {
+      await requestAccount();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
       try {
-        const tx = await contract.mintUsername(username);
-        await tx.wait();
-        setMessage(`Username "${username}" has been minted successfully.`);
+        const isAvailable = await checkUsernameAvailability();
+        if (isAvailable) {
+          const transaction = await contract.mintUsername(username);
+          setStatus('Transaction submitted');
+          await transaction.wait();
+          setStatus('Username minted successfully');
+        } else {
+          setStatus('Username is taken');
+        }
       } catch (error) {
-        console.error('Error minting username:', error);
-        setMessage('Error minting username: ' + error.message);
+        console.error(error);
+        setStatus('Error minting username');
       }
-    } else {
-      setMessage('Username not available.');
     }
   };
 
   return (
-
-    <div>
-      <Navbar/>
-      <h1>Username Registry</h1>
-      <ConnectButton />
-      {isConnected && (
-        <div className='text-black'>
-          <div className='text-black'>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter username"
-            />
-            <button onClick={handleCheckAvailability}>Check Availability</button>
-            {availability !== null && (
-              <p>{availability ? 'Username is available' : 'Username is not available'}</p>
-            )}
-          </div>
-          <div>
-            <button onClick={handleMintUsername}>Mint Username</button>
-          </div>
-        </div>
-      )}
-      {message && <p>{message}</p>}
-    </div>
+    <>
+    <Navbar/>
+    <div className="bg-white text-black my-20">
+      <input
+        type="text"
+        placeholder="Enter username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <button onClick={mintUsername}>Mint Username</button>
+      <p>{status}</p>
+    </div> </>
   );
-}
+};
+
+export default MintUsername;

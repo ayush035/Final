@@ -1,8 +1,8 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import UsernameRegistry from '@/components/UsernameRegistry'
+import Username from "@/components/Username"
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import MintUsername from '@/components/Username';
 
 export default function Home() {
     return (
@@ -10,7 +10,7 @@ export default function Home() {
   <Navbar/>
    <div className='flex justify-center my-4 '>
 <div>
-      <UsernameRegistry />
+      <Username />
     </div></div></>
     )
   }
