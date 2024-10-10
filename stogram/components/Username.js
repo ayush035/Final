@@ -201,7 +201,7 @@ const MintUsername = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="flex justify-center items-center h-screen">
         <main className="rounded-xl bg-black text-purple-300 mx-72 outline outline-offset-2 outline-zinc-700 drop-shadow-lg shadow-purple-300">
           {isConnected ? (
@@ -225,7 +225,7 @@ const MintUsername = () => {
                   <button onClick={checkUsernameAvailability}>Check Availability</button>
                 </div>
                 {isAvailable !== null && (
-                  <p>{isAvailable ? 'Username is available!' : 'Username is not available.'}</p>
+                  <p className="mx-16">{isAvailable ? 'Username is available!' : 'Username is not available.'}</p>
                 )}
                 <br />
                 <div className="flex justify-center items-center my-4 mx-8">
