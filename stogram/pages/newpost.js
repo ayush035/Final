@@ -56,8 +56,8 @@ Upload Posts</div>
       {fileUploaded && (
         <div className="overlay">
           <div className="notification">
-            <div className="text-white font-sans font-semibold">
-            Posted ! </div>
+            <div className="text-black font-sans font-semibold">
+            Posted! </div>
           </div>
         </div>
       )}
