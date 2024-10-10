@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
-import Navbar from '@/components/Navbar';
 import { useAccount } from 'wagmi'; // To check wallet connection status
 
 const contractAddress = "0xC3a3e3419ED038B261dE1BF8057558F85b6e33D8"; // Deployed contract address
@@ -201,7 +200,6 @@ const MintUsername = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="flex justify-center items-center h-screen">
         <main className="rounded-xl bg-black text-purple-300 mx-72 outline outline-offset-2 outline-zinc-700 drop-shadow-lg shadow-purple-300">
           {isConnected ? (
