@@ -2,136 +2,137 @@ import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi'; // To check wallet connection status
 
-const contractAddress = "0xC3a3e3419ED038B261dE1BF8057558F85b6e33D8"; // Deployed contract address
-const contractABI = [
+const contractAddress = "0xfB4502dD42319685A974341eAd09E71043B73606"; // Deployed contract address
+const contractABI  = [
   {
-      "anonymous": false,
-      "inputs": [
-          {
-              "indexed": true,
-              "internalType": "string",
-              "name": "username",
-              "type": "string"
-          },
-          {
-              "indexed": true,
-              "internalType": "address",
-              "name": "user",
-              "type": "address"
-          }
-      ],
-      "name": "UsernameMinted",
-      "type": "event"
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "username",
+        "type": "string"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "UsernameMinted",
+    "type": "event"
   },
   {
-      "inputs": [
-          {
-              "internalType": "address",
-              "name": "_wallet",
-              "type": "address"
-          }
-      ],
-      "name": "checkUsernameFromRainbow",
-      "outputs": [
-          {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wallet",
+        "type": "address"
+      }
+    ],
+    "name": "checkUsernameFromRainbow",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-      "inputs": [
-          {
-              "internalType": "address",
-              "name": "_wallet",
-              "type": "address"
-          }
-      ],
-      "name": "getUsernameFromWallet",
-      "outputs": [
-          {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wallet",
+        "type": "address"
+      }
+    ],
+    "name": "getUsernameFromWallet",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-      "inputs": [
-          {
-              "internalType": "string",
-              "name": "_username",
-              "type": "string"
-          }
-      ],
-      "name": "isUsernameAvailable",
-      "outputs": [
-          {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_username",
+        "type": "string"
+      }
+    ],
+    "name": "isUsernameAvailable",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-      "inputs": [
-          {
-              "internalType": "string",
-              "name": "_username",
-              "type": "string"
-          }
-      ],
-      "name": "mintUsername",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_username",
+        "type": "string"
+      }
+    ],
+    "name": "mintUsername",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-      "inputs": [
-          {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-          }
-      ],
-      "name": "usernames",
-      "outputs": [
-          {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "usernames",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-      "inputs": [
-          {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-          }
-      ],
-      "name": "walletToUsername",
-      "outputs": [
-          {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "walletToUsername",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ];
+
 const MintUsername = () => {
   const [username, setUsername] = useState('');
   const [status, setStatus] = useState('');
