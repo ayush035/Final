@@ -38,14 +38,10 @@ const avalanche = {
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9c17dc69becbe137fe50e55e31598852',
-  chains: [ arbitrum, arbitrumSepolia],
+  chains: [  arbitrumSepolia],
   transports: {
-    [arbitrum.id]: http(),
     [arbitrumSepolia.id]: http(),
-    [zetachain.id]: http(),
-    [zetachainAthensTestnet.id]: http(),
-    [zksync.id]: http(),
-    [celo.id]: http(),
+
 
 
 
