@@ -8,9 +8,7 @@ export default function Navbar() {
     return (
         
             <>
-                        {/* <div className=" h-10 my-4   text-white  font-sans  text-center bg-purple-400 text-xl" >
-The website is under development, We are shipping some updates stay tuned! 🚀
-            </div> */}
+                        
           
             <nav className=' flex justify-between h-12 text-white   font-semibold  fixed top-0 left-0 w-full z-50 backdrop-blur-md my-2 ' >
                 <span className='mx-24  flex text-purple-400 text-2xl  '>
@@ -39,7 +37,7 @@ The website is under development, We are shipping some updates stay tuned! 🚀
 
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
-            <Link href="/newpost">Post</Link></div>
+            <Link href="/minting">Post</Link></div>
 
         <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
     

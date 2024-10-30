@@ -3,18 +3,13 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 // import Upload from '@/components/Upload'
 // const inter = Inter({ subsets: ['latin'] })
-import d from '../public/d.jpg'
-import e from '../public/e.jpg'
-import shield from '../public/shield.png'
-import Footer from '@/components/Footer'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import aset from "@/public/aset.webp"
 export default function Home() {
   return (
    <>
 
- 
 <Navbar/>
+
 <div className="my-16 text-black">.
 
 </div>

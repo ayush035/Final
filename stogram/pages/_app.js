@@ -14,17 +14,17 @@ import { WagmiProvider, http } from 'wagmi'
 import { mainnet, zetachain, zksync, arbitrum, zetachainAthensTestnet, arbitrumSepolia, celo } from 'wagmi/chains'
 import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 
-const avalanche = {
-  id: 5555,
-  name: 'CVC Kura',
+const MetisSepoliatestnet = {
+  id: 59902,
+  name: 'Metis Sepolia Testnet',
 
   iconBackground: '#fff',
-  nativeCurrency: { name: 'XCR', symbol: 'XCR', decimals: 18 },
+  nativeCurrency: { name: 'tMetis', symbol: 'tMetis', decimals: 18 },
   rpcUrls: {
-    default: { http: ['https://rpc-kura.cross.technology'] },
+    default: { http: ['https://sepolia.metisdevops.link	'] },
   },
   blockExplorers: {
-    default: { name: 'Crossvaluescan', url: 'https://testnet.crossvaluescan.com' },
+    default: { name: 'Metis Sepolia Testnet explorer', url: 'https://sepolia-explorer.metisdevops.link' },
   },
   // contracts: {
   //   multicall3: {
@@ -38,9 +38,9 @@ const avalanche = {
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9c17dc69becbe137fe50e55e31598852',
-  chains: [  arbitrumSepolia],
+  chains: [  MetisSepoliatestnet],
   transports: {
-    [arbitrumSepolia.id]: http(),
+    [MetisSepoliatestnet.id]: http(),
 
 
 
