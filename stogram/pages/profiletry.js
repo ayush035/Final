@@ -57,7 +57,7 @@ const Profile = () => {
       }
     } catch (err) {
       console.error("Error resolving username:", err.message);
-      setError("No username associated with this wallet. Go to Username and mint your unique username now!");
+      setError("No username associated with this wallet. Go to Username and mint your username now!");
     } finally {
       setLoading(false);
     }
