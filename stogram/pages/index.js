@@ -5,6 +5,10 @@ import Navbar from '@/components/Navbar'
 // const inter = Inter({ subsets: ['latin'] })
 import aset from "@/public/aset.webp"
 import aset2 from "@/public/aset2.jpg"
+import aset3 from "@/public/aset3.jpg"
+import aset4 from "@/public/aset4.jpg"
+
+
 
 export default function Home() {
   return (
@@ -101,23 +105,66 @@ How to get started?
 <div className='flex justify-center'>
    <div className='grid grid-cols-2 gap-6'>
 
-    <div className='mx-28 my-4'>
+    <div className='mx-28 my-4 brightness--80'>
     <Image 
 src={aset2}
 alt=''
-width="350"
-height="350"/>
+width="380"
+height="380"/>
  </div>
 
 <div className='my-16'>
-<div className='text-4xl font-sans font-bold text-white my-6'>
+<div className='text-4xl font-sans font-bold text-white my-6 mx-12'>
 Let's get you Onboard!
 </div>
-<div className='text-lg font-sans  text-zinc-300 my-4'>Head over to the username from menu, type in the username of your choice
+<div className='text-lg font-sans  text-zinc-300 my-4 mx-12'>Head over to the username from menu, type in the username of your choice
   click on check availability to check wether it's available or not, If yes, click on mint and approve the transaction. 
   Wooh!🎉 You're now onboard!
 </div>
 </div>
+
+<div className='my-16'>
+<div className='text-4xl font-sans font-bold text-white my-6 mx-16'>
+What to do now?
+</div>
+<div className='text-lg font-sans  text-zinc-300 my-4 mx-16'>
+  Now that you are onboarded, you can now post anything you want on the platform 
+  and Mint it as NFT, claiming its ownership onchain forever! 
+  Just head over to post and select the pic you want to post and click Mint,
+  Approve the transaction. Congrats! you have minted your first NFT. 🚀
+</div>
+</div>
+
+<div className='mx-28 my-4 brightness--80'>
+    <Image 
+src={aset3}
+alt=''
+width="380"
+height="380"/>
+ </div>
+
+
+ <div className='mx-28 my-4 brightness--80'>
+    <Image 
+src={aset4}
+alt=''
+width="400"
+height="400"/>
+ </div>
+
+
+ <div className='my-16'>
+<div className='text-4xl font-sans font-bold text-white my-6 mx-16'>
+What's next?
+</div>
+<div className='text-lg font-sans  text-zinc-300 my-4 mx-16'>
+  You can now headover to the explore page and view content posted by others
+  on Stogram, and if you like someone's post too much you can also donate them
+  to show your appreciation and support!🎗️ 
+  <div className=' font-sans font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-100 to-purple-400'> We are also cooking a new feature of staking by which will monetize everyone on the platform. Coming Soon!🔒</div>
+</div>
+</div>
+
 
    </div>
    </div>

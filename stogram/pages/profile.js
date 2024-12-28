@@ -68,7 +68,7 @@ const Profile = () => {
       <Navbar />
       <div className='mx-20 my-24'>
 
-      <h1 className="text-purple-300 font-semibold">GM ☀️,</h1>
+      <h1 className="text-purple-300 font-semibold text-lg">GM ☀️,</h1>
       {isConnected ? (
         loading ? (
           <p>Loading your username...</p>

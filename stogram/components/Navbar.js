@@ -41,11 +41,11 @@ export default function Navbar() {
 
         <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
     
-            <Link href="/profile">Profile</Link></div>
+            <Link href="/explore">Explore</Link></div>
 
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
-            <Link href="/explore">Explore</Link></div>
+            <Link href="/profile">Profile</Link></div>
             <div className="-my-2">
         <ConnectButton/></div>
             </ul>
