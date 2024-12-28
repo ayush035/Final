@@ -57,9 +57,43 @@ width="1100"
 height="400"/>
 
 </div> */}
-<div className="my-36"></div>
+<div className="flex justify-center my-4 text-6xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400">
+   Let's Monetize Everyone!
+   </div>
+
+<div className='flex'>
+<div className='grid grid-cols-3 gap-4  mx-20 my-14'>
 
 
+<div className='rounded-3xl px-8 py-8  bg-zinc-900  '>
+  <div className='text-white font-sans font-semibold text-4xl'>
+Post. 
+</div>
+<div className='text-white font-sans font-semibolc text-lg my-2'>
+Mint your posts as NFTs and own their identities with yourself forever.
+</div>
+</div>
+
+<div className='rounded-3xl px-8 py-8  bg-zinc-900'>
+  <div className='text-white font-sans font-semibold text-4xl'>
+Donate, 
+</div>
+<div className='text-white font-sans font-semibolc text-lg my-2'>
+Support your favourite creator's work by monetizing them, with your donations!
+</div>
+</div>
+
+<div className='rounded-3xl px-8 py-8  bg-zinc-900'>
+  <div className='text-white font-sans font-semibold text-4xl'>
+Stake! 
+</div>
+<div className='text-white font-sans  text-lg my-2'>
+  Stake tokens on content creators and earn interest on it while getting access to the their premium content!
+</div>
+</div>
+
+</div>
+</div>
    </>
   )
 }
