@@ -119,7 +119,7 @@ Let's get you Onboard!
 </div>
 <div className='text-lg font-sans  text-zinc-300 my-4 mx-12'>Head over to the username from menu, type in the username of your choice
   click on check availability to check wether it's available or not, If yes, click on mint and approve the transaction. 
-  Wooh!🎉 You're now onboard!
+  Wooh! You're now onboard.🎉
 </div>
 </div>
 
