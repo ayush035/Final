@@ -65,7 +65,7 @@ height="400"/>
 <div className='grid grid-cols-3 gap-4  mx-20 my-14'>
 
 
-<div className='rounded-3xl px-8 py-8  bg-zinc-900  '>
+<div className='rounded-2xl px-8 py-8  bg-zinc-900  '>
   <div className='text-white font-sans font-semibold text-4xl'>
 Post. 
 </div>
@@ -74,7 +74,7 @@ Mint your posts as NFTs and own their identities with yourself forever.
 </div>
 </div>
 
-<div className='rounded-3xl px-8 py-8  bg-zinc-900'>
+<div className='rounded-2xl px-8 py-8  bg-zinc-900'>
   <div className='text-white font-sans font-semibold text-4xl'>
 Donate, 
 </div>
@@ -83,7 +83,7 @@ Support your favourite creator's work by monetizing them, with your donations!
 </div>
 </div>
 
-<div className='rounded-3xl px-8 py-8  bg-zinc-900'>
+<div className='rounded-2xl px-8 py-8  bg-zinc-900'>
   <div className='text-white font-sans font-semibold text-4xl'>
 Stake! 
 </div>
