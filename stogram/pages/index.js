@@ -57,7 +57,7 @@ width="1100"
 height="400"/>
 
 </div> */}
-<div className="flex justify-center my-4 text-6xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400">
+<div className="flex justify-center my-4 text-5xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400">
    Let's Monetize Everyone!
    </div>
 
@@ -69,7 +69,7 @@ height="400"/>
   <div className='text-white font-sans font-semibold text-4xl'>
 Post. 
 </div>
-<div className='text-white font-sans font-semibolc text-lg my-2'>
+<div className='text-zinc-400 font-sans font-semibolc text-lg my-2'>
 Mint your posts as NFTs and own their identities with yourself forever.
 </div>
 </div>
@@ -78,7 +78,7 @@ Mint your posts as NFTs and own their identities with yourself forever.
   <div className='text-white font-sans font-semibold text-4xl'>
 Donate, 
 </div>
-<div className='text-white font-sans font-semibolc text-lg my-2'>
+<div className='text-zinc-400 font-sans font-semibolc text-lg my-2'>
 Support your favourite creator's work by monetizing them, with your donations!
 </div>
 </div>
@@ -87,7 +87,7 @@ Support your favourite creator's work by monetizing them, with your donations!
   <div className='text-white font-sans font-semibold text-4xl'>
 Stake! 
 </div>
-<div className='text-white font-sans  text-lg my-2'>
+<div className='text-zinc-400 font-sans  text-lg my-2'>
   Stake tokens on content creators and earn interest on it while getting access to the their premium content!
 </div>
 </div>
