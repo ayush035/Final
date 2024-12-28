@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar'
 // import Upload from '@/components/Upload'
 // const inter = Inter({ subsets: ['latin'] })
 import aset from "@/public/aset.webp"
+import aset2 from "@/public/aset2.jpg"
+
 export default function Home() {
   return (
    <>
@@ -23,9 +25,7 @@ through blockchain technology.
 <div className="my-16 mx-48">
 <div className=" flex justify-center rounded-xl px-6 py-32 outline outline-offset-1 outline-pink-300 outline-width:2px">
   <div className=" grid grid-cols-2 ">
-  <div className="brightness-100 justify-right saturate-150
-
-">
+  <div className="brightness-100 justify-right saturate-150">
 <Image 
 src={aset}
 alt=''
@@ -94,6 +94,36 @@ Stake!
 
 </div>
 </div>
+
+<div className="mx-20 my-12 text-5xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400">
+How to get started?
+   </div>
+<div className='flex justify-center'>
+   <div className='grid grid-cols-2 gap-6'>
+
+    <div className='mx-28 my-4'>
+    <Image 
+src={aset2}
+alt=''
+width="350"
+height="350"/>
+ </div>
+
+<div className='my-16'>
+<div className='text-4xl font-sans font-bold text-white my-6'>
+Let's get you Onboard!
+</div>
+<div className='text-lg font-sans  text-zinc-300 my-4'>Head over to the username from menu, type in the username of your choice
+  click on check availability to check wether it's available or not, If yes, click on mint and approve the transaction. 
+  Wooh!🎉 You're now onboard!
+</div>
+</div>
+
+   </div>
+   </div>
+{/* <div className='text-black my-8'>
+  .
+</div> */}
    </>
   )
 }
