@@ -161,7 +161,7 @@ What's next?
   You can now headover to the explore page and view content posted by others
   on Stogram, and if you like someone's post too much you can also donate them
   to show your appreciation and support!🎗️ 
-  <div className=' font-sans font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-100 to-purple-400'> We are also cooking a new feature of staking by which will monetize everyone on the platform. Coming Soon!🔒</div>
+  <div className=' font-sans font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-100 to-purple-400'> We are also cooking a new feature of staking which will monetize everyone on the platform. Coming Soon!🔒</div>
 </div>
 </div>
 
