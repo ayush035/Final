@@ -37,3 +37,4 @@ contract UsernameMinting {
         return username;
     }
 }
+
