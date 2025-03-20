@@ -9,7 +9,7 @@ export default function Upload() {
 <div className='flex justify-center items-center my-6 mx-4'>
 <div className='rounded-2xl bg-slate-900'>
 <div className=' text-3xl my-4 mx-8 cursor-pointer font-sans font-semibold'>
-Upload Post</div>
+Post</div>
 </div>
 </div>
 <div className=" p-4 mx-8 right flex flex-col">
