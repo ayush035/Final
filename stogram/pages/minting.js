@@ -125,7 +125,7 @@ const MintNFT = () => {
           <div className="flex justify-center items-center my-6 mx-4">
             <div className="rounded-2xl bg-black">
               <div className="text-3xl my-4 mx-8 cursor-pointer font-sans font-semibold">
-              Upload Posts              </div>
+              Post              </div>
             </div>
           </div>
           <div className="p-2 mx-8 right flex flex-col">
@@ -137,7 +137,7 @@ const MintNFT = () => {
               <div className="rounded-2xl bg-purple-400 outline outline-offset-2 outline-zinc-700 hover:bg-white">
                 <div className="text-2xl my-2 mx-3 cursor-pointer font-sans font-semibold text-white hover:text-black">
                   <button className="px-8 my-2 cursor-pointer" onClick={mintNFT}>
-                    Mint NFT
+                    Mint 
                   </button>
                 </div>
               </div>
