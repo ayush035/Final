@@ -36,7 +36,7 @@ return (
        
     </div>
     <div className='text-slate-600 my-4'>
-        Copyright © 2024 Stogram Inc. All rights reserved
+        Copyright © 2025 Stogram Inc. All rights reserved
         </div>
 
     </div>
