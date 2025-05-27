@@ -2,8 +2,6 @@ import '@/styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import Footer from '../components/Footer';
 import { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   RainbowKitProvider,
   getDefaultWallets,
@@ -14,7 +12,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, http } from 'wagmi'
 import { metis } from 'wagmi/chains'
 import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
-
+import { Analytics } from '@vercel/analytics/next';
+ 
 // const MetisSepoliatestnet = {
 //   id: 59902,
 //   name: 'Metis Sepolia Testnet',
