@@ -1,0 +1,12 @@
+node_modules/.package-lock.json
+node_modules/@vercel/analytics/dist/astro/component.ts
+node_modules/@vercel/analytics/dist/index.d.mts
+node_modules/@vercel/analytics/dist/astro/index.astro
+node_modules/@vercel/analytics/dist/index.js
+node_modules/@vercel/analytics/dist/index.d.ts
+node_modules/@vercel/analytics/dist/index.mjs
+node_modules/@vercel/analytics/dist/index.mjs.map
+node_modules/@vercel/analytics/dist/index.js.map
+node_modules/@vercel/analytics/dist/next/index.d.ts
+node_modules/@vercel/analytics/dist/next/index.d.mts
+node_modules/@vercel/analytics/dist/next/index.js
