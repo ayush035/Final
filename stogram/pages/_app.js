@@ -61,9 +61,10 @@ function MyApp({ Component, pageProps }) {
         <div className="flex flex-col min-h-screen">
           <div className="flex-grow">
             <Component {...pageProps} />
-            <Analytics />
+          <Analytics />
 
           </div>
+
           <Footer />
         </div>
       </RainbowKitProvider>
