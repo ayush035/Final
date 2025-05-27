@@ -3,7 +3,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import Footer from '../components/Footer';
 import { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/next';
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   RainbowKitProvider,
   getDefaultWallets,
