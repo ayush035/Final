@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import Footer from '../components/Footer';
 import { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/next';
 
 import {
   RainbowKitProvider,
@@ -60,6 +61,8 @@ function MyApp({ Component, pageProps }) {
         <div className="flex flex-col min-h-screen">
           <div className="flex-grow">
             <Component {...pageProps} />
+            <Analytics />
+
           </div>
           <Footer />
         </div>
