@@ -92,7 +92,7 @@ const Profile = () => {
 
       <div className="flex">
         <div className="grid grid-cols-4 gap-2">
-          <div className="bg-black shadow-2xl text-white mx-20 my-2 rounded-xl outline outline-offset-2 outline-zinc-700 outline-width:4px">
+          {/* <div className="bg-black shadow-2xl text-white mx-20 my-2 rounded-xl outline outline-offset-2 outline-zinc-700 outline-width:4px">
             <div className="mx-1 my-1 cursor-pointer">
               <a href="https://bafybeietu4bacniu3vfiparmvxqmd4oclzdiieqva2gaz2exyif46ne4tu.ipfs.dweb.link/Logo.png">
                 <Image src={logo} alt="" height={260} width={400} />
@@ -105,7 +105,7 @@ const Profile = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
