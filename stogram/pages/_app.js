@@ -38,7 +38,7 @@ import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
-  projectId: '9c17dc69becbe137fe50e55e31598852',
+  projectId: '9174d135ff3ead793285d03479e4d37c',
   chains: [metis],
   transports: {
     [metis.id]: http(),
