@@ -7,7 +7,7 @@ import { useAccount } from 'wagmi'; // RainbowKit integration for wallet connect
 import logo from '@/public/logo.jpg';
 
 // Contract Details
-const contractAddress = "0xE20A4238BC7C2642446b3958B384aEDEc5B57063"; // Replace with your deployed contract address
+const contractAddress = "0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec"; // Replace with your deployed contract address
 const metisTokenAddress = "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000"; // Replace with METIS token contract address
 const contractABI = [
     [
@@ -15,7 +15,7 @@ const contractABI = [
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "_metisToken",
+                    "name": "CBTCToken",
                     "type": "address"
                 }
             ],
@@ -69,7 +69,7 @@ const contractABI = [
         },
         {
             "inputs": [],
-            "name": "metisToken",
+            "name": "CBTCToken",
             "outputs": [
                 {
                     "internalType": "contract IERC20",
@@ -122,7 +122,7 @@ const Fund = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Check METIS balance
+  // Check CBTC balance
   const checkBalance = async () => {
     try {
       const provider = new ethers.providers.JsonRpcProvider('https://andromeda.metis.io/?owner=1088'); // Metis mainnet RPC
@@ -217,7 +217,7 @@ const Fund = () => {
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="Amount in METIS"
+                placeholder="Amount in BTC"
               />
               <div>
               <button

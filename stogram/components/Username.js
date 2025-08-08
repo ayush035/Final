@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi'; // To check wallet connection status
 
-const contractAddress = "0x18B6926A500DC11b4E1b0f8DE27F770c5D9D2089"; // Deployed contract address
+const contractAddress = "0x25C66b57149495A196dA2c1180a02dB847493460"; // Deployed contract address
 const contractABI  = [
   {
     "anonymous": false,
