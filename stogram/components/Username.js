@@ -1,6 +1,6 @@
-import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi'; // To check wallet connection status
+import { ethers } from 'ethers';
 
 const contractAddress = "0x18B6926A500DC11b4E1b0f8DE27F770c5D9D2089"; // Deployed contract address
 const contractABI  = [
@@ -142,14 +142,16 @@ const MintUsername = () => {
 
   useEffect(() => {
     // Ensure the connected wallet is tracked after MetaMask connects
-    if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      provider.listAccounts().then(accounts => {
+    const trackWallet = async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const accounts = await provider.listAccounts();
         if (accounts.length > 0) {
-          setSelectedAccount(accounts[0]); // Set the connected account
+          setSelectedAccount(accounts[0].address || accounts[0]); // v6 returns objects
         }
-      });
-    }
+      }
+    };
+    trackWallet();
   }, [isConnected]); // This effect runs when the wallet connects
 
   // Connect to Ethereum provider (MetaMask)
@@ -166,7 +168,7 @@ const MintUsername = () => {
   const checkUsernameAvailability = async () => {
     if (!username) return;
     if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.BrowserProvider(window.ethereum);
       const contract = new ethers.Contract(contractAddress, contractABI, provider);
       const available = await contract.isUsernameAvailable(username);
       setIsAvailable(available);
@@ -182,13 +184,13 @@ const MintUsername = () => {
 
     if (typeof window.ethereum !== 'undefined') {
       await requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       try {
-        // Ensure the transaction is sent from the selected wallet
-        const transaction = await contract.mintUsername(username, { from: selectedAccount });
+        // v6 automatically uses the connected signer; no need for 'from'
+        const transaction = await contract.mintUsername(username);
         setStatus('Transaction submitted');
         await transaction.wait();
         setStatus('Username minted successfully');

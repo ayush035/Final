@@ -37,7 +37,7 @@ export default function Navbar() {
 
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
-            <Link href="/minting">Post</Link></div>
+            <Link href="/post">Post</Link></div>
 
         <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
     
