@@ -399,7 +399,7 @@ const Profile = () => {
             <div className="text-center py-12 text-zinc-400">
               <p className="text-lg mb-4">You haven't created any posts yet</p>
               <a
-                href="/upload"
+                href="/post"
                 className="inline-block px-6 py-3 bg-purple-400 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors"
               >
                 Create Your First Post
