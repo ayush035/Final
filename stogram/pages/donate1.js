@@ -7,7 +7,7 @@ import { useAccount } from 'wagmi'; // RainbowKit integration for wallet connect
 import logo from '@/public/logo.jpg';
 
 // Contract Details
-const contractAddress = "0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec"; // Replace with your deployed contract address
+const contractAddress = "0xE20A4238BC7C2642446b3958B384aEDEc5B57063"; // Replace with your deployed contract address
 const metisTokenAddress = "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000"; // Replace with METIS token contract address
 const contractABI = [
     [
@@ -15,7 +15,7 @@ const contractABI = [
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "CBTCToken",
+                    "name": "Metis",
                     "type": "address"
                 }
             ],
@@ -69,7 +69,7 @@ const contractABI = [
         },
         {
             "inputs": [],
-            "name": "CBTCToken",
+            "name": "Metis",
             "outputs": [
                 {
                     "internalType": "contract IERC20",

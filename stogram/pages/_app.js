@@ -14,33 +14,33 @@ import { metis } from 'wagmi/chains'
 import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 import { Analytics } from '@vercel/analytics/next';
  
-const CitreaTestnet = {
-  id: 5115,
-  name: 'Citrea Testnet',
+// const CitreaTestnet = {
+//   id: 5115,
+//   name: 'Citrea Testnet',
 
-  iconBackground: '#fff',
-  nativeCurrency: { name: 'CBTC', symbol: 'CBTC', decimals: 18 },
-  rpcUrls: {
-    default: { http: ['https://rpc.testnet.citrea.xyz	'] },
-  },
-  blockExplorers: {
-    default: { name: 'Citrea Testnet explorer', url: 'https://explorer.testnet.citrea.xyz/' },
-  },
+//   iconBackground: '#fff',
+//   nativeCurrency: { name: 'CBTC', symbol: 'CBTC', decimals: 18 },
+//   rpcUrls: {
+//     default: { http: ['https://rpc.testnet.citrea.xyz	'] },
+//   },
+//   blockExplorers: {
+//     default: { name: 'Citrea Testnet explorer', url: 'https://explorer.testnet.citrea.xyz/' },
+//   },
   // contracts: {
   //   multicall3: {
   //     address: '0xca11bde05977b3631167028862be2a173976ca11',
   //     blockCreated: 11907934,
   //   },
-  }
+  
 
 
 
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9174d135ff3ead793285d03479e4d37c',
-  chains: [CitreaTestnet],
+  chains: [metis],
   transports: {
-    [CitreaTestnet.id]: http(),
+    [metis.id]: http(),
   },
 })
 const queryClient = new QueryClient()
