@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Navbar from '../components/Navbar';
 
-const socialContractAddress ="0x8C5028149f79290379F0E19D3DE642ca4C22629C"
+const socialContractAddress ="0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec"
 
 const socialPostsABI = [
   "function getAllPosts() external view returns (tuple(uint256 id, address author, string image, uint256 timestamp)[])",

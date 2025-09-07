@@ -5,8 +5,8 @@ import { ethers } from 'ethers';
 import { useAccount, useWalletClient } from 'wagmi';
 
 // Contract addresses and ABIs
-const usernameContractAddress = "0x18B6926A500DC11b4E1b0f8DE27F770c5D9D2089";
-const socialContractAddress = "0x8C5028149f79290379F0E19D3DE642ca4C22629C";
+const usernameContractAddress = "0x25C66b57149495A196dA2c1180a02dB847493460";
+const socialContractAddress = "0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec";
 
 const usernameContractABI = [
   {

@@ -10,7 +10,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, http } from 'wagmi'
-import { metis } from 'wagmi/chains'
+import { metis, arbitrum } from 'wagmi/chains'
 import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 import { Analytics } from '@vercel/analytics/next';
  
@@ -38,9 +38,9 @@ import { Analytics } from '@vercel/analytics/next';
 const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: '9174d135ff3ead793285d03479e4d37c',
-  chains: [metis],
+  chains: [arbitrum],
   transports: {
-    [metis.id]: http(),
+    [arbitrum.id]: http(),
   },
 })
 const queryClient = new QueryClient()

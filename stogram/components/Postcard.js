@@ -86,9 +86,9 @@ const PostCard = ({
       <div className="p-4">
         <div className="flex justify-between items-start mb-3">
           <div className="flex-1">
-            <div className="text-purple-300 font-semibold text-sm mb-1">
+            {/* <div className="text-purple-300 font-semibold text-sm mb-1">
               Post #{post.id.toString()}
-            </div>
+            </div> */}
             {showAuthor && (
               <div className="text-zinc-400 text-xs">
                 {isOwnPost ? 'You' : `${post.author.slice(0, 6)}...${post.author.slice(-4)}`}
