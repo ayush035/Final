@@ -22,13 +22,13 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
     }
 
     if (parseFloat(amount) < 1) {
-      setError('Minimum bet is 1 FIL');
+      setError('Minimum bet is 1 0g');
       return;
     }
 
     // Check balance
     if (balance && parseEther(amount.toString()) > balance.value) {
-      setError(`Insufficient balance. You have ${parseFloat(formatEther(balance.value)).toFixed(4)} FIL`);
+      setError(`Insufficient balance. You have ${parseFloat(formatEther(balance.value)).toFixed(4)} 0g`);
       return;
     }
 
@@ -44,9 +44,9 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
       if (err.message.includes('Poll ended')) {
         errorMessage += 'This poll has ended and no longer accepts bets.';
       } else if (err.message.includes('Bet below $1')) {
-        errorMessage += 'Minimum bet is $1 USD equivalent in FIL.';
+        errorMessage += 'Minimum bet is $1 USD equivalent in 0g.';
       } else if (err.message.includes('insufficient funds')) {
-        errorMessage += 'Insufficient FIL balance for this bet plus gas fees.';
+        errorMessage += 'Insufficient 0g balance for this bet plus gas fees.';
       } else if (err.message.includes('User rejected')) {
         errorMessage += 'Transaction was cancelled.';
       } else if (err.message.includes('gas')) {
@@ -84,7 +84,7 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
         {balance && (
           <div className="mb-4 p-2 rounded">
             <p className="text-xs text-gray-100">
-              Available: {parseFloat(formatEther(balance.value)).toFixed(4)} FIL
+              Available: {parseFloat(formatEther(balance.value)).toFixed(4)} 0g
             </p>
           </div>
         )}
@@ -152,7 +152,7 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
 
           <div className="mb-6">
             <label className="block text-white text-sm font-bold mb-2">
-              Amount (FIL)
+              Amount (0g)
             </label>
             <div className="relative">
               <input
@@ -182,8 +182,8 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
               </button>
             </div>
             <div className="flex justify-between text-xs text-gray-100 mt-1">
-              <span>Minimum: 1 FIL</span>
-              <span>~1 FIL minimum</span>
+              <span>Minimum: 1 0g</span>
+              <span>~1 0g minimum</span>
             </div>
           </div>
 
@@ -212,11 +212,11 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
             <div className="mt-4 p-3 bg-blue-50 rounded border">
               <p className="text-sm font-semibold text-blue-800">Bet Summary:</p>
               <p className="text-xs text-blue-700">
-                Betting {amount} FIL on <strong>{option ? 'YES' : 'NO'}</strong>
+                Betting {amount} 0g on <strong>{option ? 'YES' : 'NO'}</strong>
               </p>
               {balance && (
                 <p className="text-xs text-blue-600">
-                  Remaining balance: ~{(parseFloat(formatEther(balance.value)) - parseFloat(amount) - 0.01).toFixed(4)} FIL
+                  Remaining balance: ~{(parseFloat(formatEther(balance.value)) - parseFloat(amount) - 0.01).toFixed(4)} 0g
                 </p>
               )}
             </div>
