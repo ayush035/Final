@@ -42,6 +42,9 @@ export default function Navbar() {
         <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
     
             <Link href="/explore">Explore</Link></div>
+            <div className='hover:text-purple-300 delay-50 text-md  font-sans '>
+    
+    <Link href="/predict">Predict</Link></div>
 
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         

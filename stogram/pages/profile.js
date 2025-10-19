@@ -5,8 +5,8 @@ import { ethers } from 'ethers';
 import { useAccount, useWalletClient } from 'wagmi';
 
 // Contract addresses and ABIs
-const usernameContractAddress = "0x25C66b57149495A196dA2c1180a02dB847493460";
-const socialContractAddress = "0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec";
+const usernameContractAddress = "0x5f2B1D191b44E5F4727F1a0810f6383C53a099bD";
+const socialContractAddress = "0xb4f9cF8a5db1E6Bb501A1d22Be93A92fa3692BC4";
 
 const usernameContractABI = [
   {
@@ -22,225 +22,225 @@ const usernameContractABI = [
 
 const socialPostsABI = [
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "image",
-				"type": "string"
-			}
-		],
-		"name": "createPost",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+	  "inputs": [
+		{
+		  "internalType": "string",
+		  "name": "image",
+		  "type": "string"
+		}
+	  ],
+	  "name": "createPost",
+	  "outputs": [],
+	  "stateMutability": "nonpayable",
+	  "type": "function"
 	},
 	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+	  "inputs": [],
+	  "stateMutability": "nonpayable",
+	  "type": "constructor"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
+	  "anonymous": false,
+	  "inputs": [
+		{
+		  "indexed": true,
+		  "internalType": "uint256",
+		  "name": "id",
+		  "type": "uint256"
+		},
+		{
+		  "indexed": true,
+		  "internalType": "address",
+		  "name": "author",
+		  "type": "address"
+		},
+		{
+		  "indexed": false,
+		  "internalType": "string",
+		  "name": "image",
+		  "type": "string"
+		},
+		{
+		  "indexed": false,
+		  "internalType": "uint256",
+		  "name": "timestamp",
+		  "type": "uint256"
+		}
+	  ],
+	  "name": "PostCreated",
+	  "type": "event"
+	},
+	{
+	  "inputs": [],
+	  "name": "getAllPosts",
+	  "outputs": [
+		{
+		  "components": [
 			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
+			  "internalType": "uint256",
+			  "name": "id",
+			  "type": "uint256"
 			},
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "author",
-				"type": "address"
+			  "internalType": "address",
+			  "name": "author",
+			  "type": "address"
 			},
 			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "image",
-				"type": "string"
+			  "internalType": "string",
+			  "name": "image",
+			  "type": "string"
 			},
 			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "timestamp",
-				"type": "uint256"
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
 			}
-		],
-		"name": "PostCreated",
-		"type": "event"
+		  ],
+		  "internalType": "struct SocialPosts.Post[]",
+		  "name": "",
+		  "type": "tuple[]"
+		}
+	  ],
+	  "stateMutability": "view",
+	  "type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getAllPosts",
-		"outputs": [
+	  "inputs": [
+		{
+		  "internalType": "uint256",
+		  "name": "offset",
+		  "type": "uint256"
+		},
+		{
+		  "internalType": "uint256",
+		  "name": "count",
+		  "type": "uint256"
+		}
+	  ],
+	  "name": "getFeed",
+	  "outputs": [
+		{
+		  "components": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "author",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "image",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct SocialPosts.Post[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "offset",
-				"type": "uint256"
+			  "internalType": "uint256",
+			  "name": "id",
+			  "type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"name": "getFeed",
-		"outputs": [
+			  "internalType": "address",
+			  "name": "author",
+			  "type": "address"
+			},
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "author",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "image",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct SocialPosts.Post[]",
-				"name": "",
-				"type": "tuple[]"
+			  "internalType": "string",
+			  "name": "image",
+			  "type": "string"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
 			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+		  ],
+		  "internalType": "struct SocialPosts.Post[]",
+		  "name": "",
+		  "type": "tuple[]"
+		}
+	  ],
+	  "stateMutability": "view",
+	  "type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getMyPosts",
-		"outputs": [
+	  "inputs": [],
+	  "name": "getMyPosts",
+	  "outputs": [
+		{
+		  "components": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "author",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "image",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct SocialPosts.Post[]",
-				"name": "",
-				"type": "tuple[]"
+			  "internalType": "uint256",
+			  "name": "id",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "address",
+			  "name": "author",
+			  "type": "address"
+			},
+			{
+			  "internalType": "string",
+			  "name": "image",
+			  "type": "string"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
 			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+		  ],
+		  "internalType": "struct SocialPosts.Post[]",
+		  "name": "",
+		  "type": "tuple[]"
+		}
+	  ],
+	  "stateMutability": "view",
+	  "type": "function"
 	},
 	{
-		"inputs": [
+	  "inputs": [
+		{
+		  "internalType": "uint256",
+		  "name": "postId",
+		  "type": "uint256"
+		}
+	  ],
+	  "name": "getPost",
+	  "outputs": [
+		{
+		  "components": [
 			{
-				"internalType": "uint256",
-				"name": "postId",
-				"type": "uint256"
-			}
-		],
-		"name": "getPost",
-		"outputs": [
+			  "internalType": "uint256",
+			  "name": "id",
+			  "type": "uint256"
+			},
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "author",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "image",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct SocialPosts.Post",
-				"name": "",
-				"type": "tuple"
+			  "internalType": "address",
+			  "name": "author",
+			  "type": "address"
+			},
+			{
+			  "internalType": "string",
+			  "name": "image",
+			  "type": "string"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
 			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+		  ],
+		  "internalType": "struct SocialPosts.Post",
+		  "name": "",
+		  "type": "tuple"
+		}
+	  ],
+	  "stateMutability": "view",
+	  "type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "totalPosts",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+	  "inputs": [],
+	  "name": "totalPosts",
+	  "outputs": [
+		{
+		  "internalType": "uint256",
+		  "name": "",
+		  "type": "uint256"
+		}
+	  ],
+	  "stateMutability": "view",
+	  "type": "function"
 	}
-];
+  ];
 
 const Profile = () => {
   const { address, isConnected } = useAccount();
@@ -334,11 +334,11 @@ const Profile = () => {
             rel="noopener noreferrer"
             className="text-purple-300 hover:text-purple-400 text-sm underline"
           >
-            View on IPFS
+            View on 0g storage
           </a>
         </div>
         <div className="text-xs text-zinc-400 mt-2">
-          IPFS: {post.image.slice(0, 20)}...
+          Hash: {post.image.slice(0, 20)}...
         </div>
       </div>
     </div>
