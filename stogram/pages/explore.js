@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 import Navbar from '../components/Navbar';
 import { get0GDownloadUrl } from '@/lib/0g-browser-client';
 
-const socialContractAddress = "0xb4f9cF8a5db1E6Bb501A1d22Be93A92fa3692BC4";
+const socialContractAddress = "0x25C66b57149495A196dA2c1180a02dB847493460";
 
 const socialPostsABI = [
   "function getAllPosts() external view returns (tuple(uint256 id, address author, string image, uint256 timestamp)[])",

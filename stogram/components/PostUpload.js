@@ -1,9 +1,9 @@
 // components/PostUpload.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ethers } from 'ethers';
 import { useAccount, useWalletClient } from 'wagmi';
 import Navbar from '@/components/Navbar';
-import { uploadTo0G, get0GDownloadUrl } from '@/lib/0g-browser-client';
+import { uploadTo0GSimple as uploadTo0GStorage, get0GDownloadUrl } from '@/lib/0g-storage-simple';
 
 const SOCIAL_POSTS_ABI = [
   {
@@ -12,48 +12,17 @@ const SOCIAL_POSTS_ABI = [
         "internalType": "string",
         "name": "image",
         "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isPrivate",
+        "type": "bool"
       }
     ],
     "name": "createPost",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "author",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "image",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "PostCreated",
-    "type": "event"
   },
   {
     "inputs": [],
@@ -80,146 +49,21 @@ const SOCIAL_POSTS_ABI = [
             "internalType": "uint256",
             "name": "timestamp",
             "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPrivate",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isDeleted",
+            "type": "bool"
           }
         ],
         "internalType": "struct SocialPosts.Post[]",
         "name": "",
         "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "offset",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "count",
-        "type": "uint256"
-      }
-    ],
-    "name": "getFeed",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "author",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "timestamp",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct SocialPosts.Post[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getMyPosts",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "author",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "timestamp",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct SocialPosts.Post[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "postId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getPost",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "author",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "timestamp",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct SocialPosts.Post",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalPosts",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -227,7 +71,7 @@ const SOCIAL_POSTS_ABI = [
   }
 ];
 
-const CONTRACT_ADDRESS = "0xb4f9cF8a5db1E6Bb501A1d22Be93A92fa3692BC4";
+const CONTRACT_ADDRESS = "0x25C66b57149495A196dA2c1180a02dB847493460";
 
 export default function PostUpload() {
   const { address, isConnected } = useAccount();
@@ -247,6 +91,7 @@ export default function PostUpload() {
   
   // Post state
   const [description, setDescription] = useState("");
+  const [isPrivate, setIsPrivate] = useState(false);
   const [creatingPost, setCreatingPost] = useState(false);
   
   // Error state
@@ -276,7 +121,7 @@ export default function PostUpload() {
     }
     
     // Validate file size (10MB limit)
-    const maxSize = 10 * 1024 * 1024; // 10MB
+    const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
       setError('File size must be less than 10MB');
       setSelectedFile(null);
@@ -318,15 +163,12 @@ export default function PostUpload() {
     setUploadProgress(0);
 
     try {
-      // Get signer from wallet client
       const provider = new ethers.BrowserProvider(walletClient.transport);
       const signer = await provider.getSigner();
 
       console.log('Starting upload to 0G Storage...');
-      console.log('File:', selectedFile.name, 'Size:', selectedFile.size, 'bytes');
-
-      // Upload to 0G Storage with progress callback
-      const result = await uploadTo0G(
+      
+      const result = await uploadTo0GStorage(
         selectedFile, 
         signer,
         (progress) => {
@@ -352,7 +194,7 @@ export default function PostUpload() {
   };
 
   /**
-   * Create post on blockchain
+   * Create post on blockchain with privacy setting
    */
   const createPost = async () => {
     if (!walletClient || !fileHash || !isConnected) {
@@ -374,25 +216,21 @@ export default function PostUpload() {
       );
       
       console.log('Creating post with hash:', fileHash);
+      console.log('Privacy setting:', isPrivate ? 'Private' : 'Public');
       
-      // Store the file hash in the smart contract
-      const tx = await contract.createPost(fileHash);
+      // Store the file hash in the smart contract with privacy setting
+      const tx = await contract.createPost(fileHash, isPrivate);
       console.log('Transaction sent:', tx.hash);
       
-      // Wait for confirmation
       const receipt = await tx.wait();
       console.log('✅ Post created successfully! Block:', receipt.blockNumber);
       
-      // Reset form
       resetForm();
-      
-      // Show success message
-      alert('🎉 Post created successfully on 0G Storage!\n\nYour image is now permanently stored on the decentralized network.');
+      alert(`🎉 ${isPrivate ? 'Private' : 'Public'} post created successfully!\n\nYour image is now stored on 0G Storage.`);
       
     } catch (err) {
       console.error('❌ Create post error:', err);
       
-      // Handle specific error types
       let errorMessage = 'Failed to create post';
       if (err.code === 'ACTION_REJECTED') {
         errorMessage = 'Transaction was rejected';
@@ -418,6 +256,7 @@ export default function PostUpload() {
     setFileUploaded(false);
     setUploadProgress(0);
     setUploadDetails(null);
+    setIsPrivate(false);
   };
 
   /**
@@ -425,7 +264,7 @@ export default function PostUpload() {
    */
   const handleCancel = () => {
     if (uploading || creatingPost) {
-      return; // Don't allow cancel during operations
+      return;
     }
     resetForm();
     setError('');
@@ -554,9 +393,6 @@ export default function PostUpload() {
                   <span className="text-purple-300">Uploading to 0G Storage...</span>
                   <span className="text-purple-300 font-semibold">{uploadProgress}%</span>
                 </div>
-                <p className="text-xs text-zinc-500 text-center">
-                  Please wait while your file is being uploaded to the decentralized network
-                </p>
               </div>
             )}
 
@@ -577,15 +413,6 @@ export default function PostUpload() {
                           {fileHash}
                         </p>
                       </div>
-                      
-                      {uploadDetails.txHash && (
-                        <div>
-                          <span className="text-green-300 font-semibold">Transaction:</span>
-                          <p className="text-green-400 font-mono break-all mt-1">
-                            {uploadDetails.txHash}
-                          </p>
-                        </div>
-                      )}
                     </div>
 
                     <a
@@ -597,6 +424,43 @@ export default function PostUpload() {
                       View on 0G Storage ↗
                     </a>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Privacy Toggle */}
+            {fileUploaded && (
+              <div className="bg-zinc-800 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-200 mb-1">
+                      Post Privacy
+                    </p>
+                    <p className="text-xs text-zinc-400">
+                      {isPrivate 
+                        ? '🔒 Only you can see this post' 
+                        : '🌍 Everyone can see this post'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setIsPrivate(!isPrivate)}
+                    disabled={creatingPost}
+                    className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors
+                      ${isPrivate ? 'bg-purple-600' : 'bg-zinc-600'}
+                      disabled:opacity-50 disabled:cursor-not-allowed`}
+                  >
+                    <span
+                      className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform
+                        ${isPrivate ? 'translate-x-7' : 'translate-x-1'}`}
+                    />
+                  </button>
+                </div>
+                <div className="mt-3 text-xs text-zinc-500">
+                  {isPrivate ? (
+                    <p>✓ Private posts are only visible to you</p>
+                  ) : (
+                    <p>✓ Public posts appear in the global feed</p>
+                  )}
                 </div>
               </div>
             )}
@@ -651,7 +515,7 @@ export default function PostUpload() {
                     transition-colors py-3 px-6"
                 >
                   <div className="text-xl font-sans font-semibold text-white">
-                    {creatingPost ? 'Creating Post...' : 'Create Post'}
+                    {creatingPost ? 'Creating Post...' : `Create ${isPrivate ? 'Private' : 'Public'} Post`}
                   </div>
                 </button>
 
@@ -671,7 +535,7 @@ export default function PostUpload() {
 
             {/* Info Footer */}
             <div className="pt-4 border-t border-zinc-800">
-			<div className="text-xs text-zinc-500 text-center space-y-1">
+              <div className="text-xs text-zinc-500 text-center space-y-1">
                 <p>🔒 Powered by 0G Decentralized Storage Network</p>
                 <p>Your files are stored permanently and censorship-resistant</p>
               </div>

@@ -1,10 +1,10 @@
 // Replace with your actual contract address after deployment
-export const PREDICTION_MARKET_ADDRESS = "0x6c68a6d023940Ba560d1484B89Ef081Cf8156479";
+export const PREDICTION_MARKET_ADDRESS = "0xC54E78206Ac0CDA086Ab121Ca8EFe8Bc23eC71ec";
 
 // Pyth Network addresses
 export const PYTH_ADDRESSES = {
   // 0g testnet
-  16602: "0x2880ab155794e7179c9ee2e38200202908c17b43"
+  16661: "0x2880ab155794e7179c9ee2e38200202908c17b43"
   
 };
 
@@ -18,6 +18,6 @@ export const PRICE_FEEDS = {
   // Add more as needed
 };
 
-export const SUPPORTED_CHAINS = [16602]; // Add your target chains
+export const SUPPORTED_CHAINS = [16661]; // Add your target chains
 
 export const DEBUG_MODE = process.env.NODE_ENV === 'development';

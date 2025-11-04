@@ -3,6 +3,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import  '@/styles/Home.module.css'
 import stolog from '@/public/stolog.jpg'
 import Image from "next/image";
+import SearchFollowUser from "./SearchFollowUser";
 export default function Navbar() {
 
     return (
@@ -11,7 +12,7 @@ export default function Navbar() {
                         
           
             <nav className=' flex justify-between h-12 text-white   font-semibold  fixed top-0 left-0 w-full z-50 backdrop-blur-md my-2 ' >
-                <span className='mx-24  flex text-purple-400 text-2xl  '>
+                <span className='mx-2  flex text-purple-400 text-2xl  '>
                     
                     <Link href={"/"}>
                     <Image
@@ -28,6 +29,7 @@ export default function Navbar() {
              <div>
         {/* <input className='px-4 rounded-lg text-smfont-semibold font-sans h-8 outline outline-offset-2 outline-slate-300 outline-width:4px hover:outline-purple-400 outline-width: 4px' type="search" placeholder="Search..." /> */}
         </div>
+
         <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
             <Link href="/naming">Username</Link></div>
@@ -49,6 +51,9 @@ export default function Navbar() {
             <div className='hover:text-purple-300 delay-50  text-md  font-sans'>
         
             <Link href="/profile">Profile</Link></div>
+
+        <SearchFollowUser />
+
             <div className="-my-2">
         <ConnectButton/></div>
             </ul>

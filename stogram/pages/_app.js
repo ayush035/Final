@@ -15,13 +15,13 @@ import { getDefaultConfig, } from '@rainbow-me/rainbowkit'
 import { Analytics } from '@vercel/analytics/next';
  
 const OgTestnet = {
-  id: 16602,
-  name: '0g-Testnet',
+  id: 16661,
+  name: '0g Mainnet',
 
   iconBackground: '#fff',
   nativeCurrency: { name: '0g', symbol: '0g', decimals: 18 },
   rpcUrls: {
-    default: { http: ['https://evmrpc-testnet.0g.ai	'] },
+    default: { http: ['https://evmrpc.0g.ai	'] },
   }}
   
 

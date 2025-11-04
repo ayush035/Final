@@ -1,12 +1,17 @@
 // pages/profile.jsx (or components/Profile.jsx)
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { ethers } from 'ethers';
 import { useAccount, useWalletClient } from 'wagmi';
+import { SOCIAL_GRAPH_CONTRACT } from '@/lib/config3';
+import FollowListModal from '../components/FollowListModal';
+import { useReadContract } from 'wagmi';
+import { RefreshCw, Users, UserPlus, MoreVertical, Trash2, Lock, Globe } from 'lucide-react';
 
+ 
 // Contract addresses and ABIs
-const usernameContractAddress = "0x5f2B1D191b44E5F4727F1a0810f6383C53a099bD";
-const socialContractAddress = "0xb4f9cF8a5db1E6Bb501A1d22Be93A92fa3692BC4";
+const usernameContractAddress = "0x0E51e917f9B397CF654Ad009B2b60ae2d7525b46";
+const socialContractAddress = "0x25C66b57149495A196dA2c1180a02dB847493460";
 
 const usernameContractABI = [
   {
@@ -22,236 +27,490 @@ const usernameContractABI = [
 
 const socialPostsABI = [
 	{
-	  "inputs": [
-		{
-		  "internalType": "string",
-		  "name": "image",
-		  "type": "string"
-		}
-	  ],
-	  "name": "createPost",
-	  "outputs": [],
-	  "stateMutability": "nonpayable",
-	  "type": "function"
-	},
-	{
-	  "inputs": [],
-	  "stateMutability": "nonpayable",
-	  "type": "constructor"
-	},
-	{
-	  "anonymous": false,
-	  "inputs": [
-		{
-		  "indexed": true,
-		  "internalType": "uint256",
-		  "name": "id",
-		  "type": "uint256"
-		},
-		{
-		  "indexed": true,
-		  "internalType": "address",
-		  "name": "author",
-		  "type": "address"
-		},
-		{
-		  "indexed": false,
-		  "internalType": "string",
-		  "name": "image",
-		  "type": "string"
-		},
-		{
-		  "indexed": false,
-		  "internalType": "uint256",
-		  "name": "timestamp",
-		  "type": "uint256"
-		}
-	  ],
-	  "name": "PostCreated",
-	  "type": "event"
-	},
-	{
-	  "inputs": [],
-	  "name": "getAllPosts",
-	  "outputs": [
-		{
-		  "components": [
+		"inputs": [
 			{
-			  "internalType": "uint256",
-			  "name": "id",
-			  "type": "uint256"
+				"internalType": "string",
+				"name": "image",
+				"type": "string"
 			},
 			{
-			  "internalType": "address",
-			  "name": "author",
-			  "type": "address"
-			},
-			{
-			  "internalType": "string",
-			  "name": "image",
-			  "type": "string"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
+				"internalType": "bool",
+				"name": "isPrivate",
+				"type": "bool"
 			}
-		  ],
-		  "internalType": "struct SocialPosts.Post[]",
-		  "name": "",
-		  "type": "tuple[]"
-		}
-	  ],
-	  "stateMutability": "view",
-	  "type": "function"
+		],
+		"name": "createPost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
-	  "inputs": [
-		{
-		  "internalType": "uint256",
-		  "name": "offset",
-		  "type": "uint256"
-		},
-		{
-		  "internalType": "uint256",
-		  "name": "count",
-		  "type": "uint256"
-		}
-	  ],
-	  "name": "getFeed",
-	  "outputs": [
-		{
-		  "components": [
+		"inputs": [
 			{
-			  "internalType": "uint256",
-			  "name": "id",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "address",
-			  "name": "author",
-			  "type": "address"
-			},
-			{
-			  "internalType": "string",
-			  "name": "image",
-			  "type": "string"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
 			}
-		  ],
-		  "internalType": "struct SocialPosts.Post[]",
-		  "name": "",
-		  "type": "tuple[]"
-		}
-	  ],
-	  "stateMutability": "view",
-	  "type": "function"
+		],
+		"name": "deletePost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
-	  "inputs": [],
-	  "name": "getMyPosts",
-	  "outputs": [
-		{
-		  "components": [
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
 			{
-			  "internalType": "uint256",
-			  "name": "id",
-			  "type": "uint256"
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			},
 			{
-			  "internalType": "address",
-			  "name": "author",
-			  "type": "address"
+				"indexed": true,
+				"internalType": "address",
+				"name": "author",
+				"type": "address"
 			},
 			{
-			  "internalType": "string",
-			  "name": "image",
-			  "type": "string"
+				"indexed": false,
+				"internalType": "string",
+				"name": "image",
+				"type": "string"
 			},
 			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isPrivate",
+				"type": "bool"
 			}
-		  ],
-		  "internalType": "struct SocialPosts.Post[]",
-		  "name": "",
-		  "type": "tuple[]"
-		}
-	  ],
-	  "stateMutability": "view",
-	  "type": "function"
+		],
+		"name": "PostCreated",
+		"type": "event"
 	},
 	{
-	  "inputs": [
-		{
-		  "internalType": "uint256",
-		  "name": "postId",
-		  "type": "uint256"
-		}
-	  ],
-	  "name": "getPost",
-	  "outputs": [
-		{
-		  "components": [
+		"anonymous": false,
+		"inputs": [
 			{
-			  "internalType": "uint256",
-			  "name": "id",
-			  "type": "uint256"
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			},
 			{
-			  "internalType": "address",
-			  "name": "author",
-			  "type": "address"
-			},
-			{
-			  "internalType": "string",
-			  "name": "image",
-			  "type": "string"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
+				"indexed": true,
+				"internalType": "address",
+				"name": "author",
+				"type": "address"
 			}
-		  ],
-		  "internalType": "struct SocialPosts.Post",
-		  "name": "",
-		  "type": "tuple"
-		}
-	  ],
-	  "stateMutability": "view",
-	  "type": "function"
+		],
+		"name": "PostDeleted",
+		"type": "event"
 	},
 	{
-	  "inputs": [],
-	  "name": "totalPosts",
-	  "outputs": [
-		{
-		  "internalType": "uint256",
-		  "name": "",
-		  "type": "uint256"
-		}
-	  ],
-	  "stateMutability": "view",
-	  "type": "function"
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "author",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isPrivate",
+				"type": "bool"
+			}
+		],
+		"name": "PostPrivacyChanged",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isPrivate",
+				"type": "bool"
+			}
+		],
+		"name": "setPostPrivacy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllPosts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPrivate",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDeleted",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct SocialPosts.Post[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "offset",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"name": "getFeed",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPrivate",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDeleted",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct SocialPosts.Post[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMyPosts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPrivate",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDeleted",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct SocialPosts.Post[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPost",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPrivate",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDeleted",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct SocialPosts.Post",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getUserPosts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPrivate",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDeleted",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct SocialPosts.Post[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			}
+		],
+		"name": "isPostDeleted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "postId",
+				"type": "uint256"
+			}
+		],
+		"name": "isPostPrivate",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalPosts",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "totalUserPosts",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
-  ];
+];
 
 const Profile = () => {
   const { address, isConnected } = useAccount();
   const { data: walletClient } = useWalletClient();
-
+  const [showFollowersModal, setShowFollowersModal] = useState(false);
+  const [showFollowingModal, setShowFollowingModal] = useState(false);
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [posts, setPosts] = useState([]);
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [postsError, setPostsError] = useState('');
+  
+  const { data: followersArray } = useReadContract({
+    address: SOCIAL_GRAPH_CONTRACT.address,
+    abi: SOCIAL_GRAPH_CONTRACT.abi,
+    functionName: 'getFollowers',
+    args: [address],
+    enabled: Boolean(address),
+  });
+
+  const { data: followingArray } = useReadContract({
+    address: SOCIAL_GRAPH_CONTRACT.address,
+    abi: SOCIAL_GRAPH_CONTRACT.abi,
+    functionName: 'getFollowing',
+    args: [address],
+    enabled: Boolean(address),
+  });
+
+  const followerCount = followersArray?.length || 0;
+  const followingCount = followingArray?.length || 0;
 
   useEffect(() => {
     if (isConnected && address) {
@@ -297,7 +556,6 @@ const Profile = () => {
       const contract = new ethers.Contract(socialContractAddress, socialPostsABI, signer);
       const userPosts = await contract.getMyPosts();
   
-      // Clone before reversing to avoid mutating the read-only Result
       setPosts([...userPosts].reverse());
     } catch (err) {
       console.error('Error loading user posts:', err);
@@ -307,42 +565,158 @@ const Profile = () => {
     }
   };
 
-  const PostCard = ({ post }) => (
-    <div className="bg-black shadow-2xl text-white rounded-xl outline outline-offset-2 outline-zinc-700 overflow-hidden">
-      <div className="relative">
-        <img
-          src={`https://gateway.lighthouse.storage/ipfs/${post.image}`}
-          alt="Post"
-          className="w-full h-64 object-cover"
-          onError={(e) => {
-            e.currentTarget.src = '/placeholder-image.png';
-          }}
-        />
-        <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-          {new Date(Number(post.timestamp) * 1000).toLocaleDateString()}
-        </div>
-      </div>
-      
-      <div className="p-4">
-        <div className="flex justify-between items-center">
-          <div className="text-purple-300 font-sans text-sm">
-            Post #{post.id.toString()}
+  // Handle delete post
+  const handleDeletePost = async (postId) => {
+    if (!window.confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      const provider = new ethers.BrowserProvider(walletClient.transport);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(socialContractAddress, socialPostsABI, signer);
+
+      const tx = await contract.deletePost(postId);
+      await tx.wait();
+
+      alert('Post deleted successfully!');
+      setPosts(prev => prev.filter(post => post.id !== postId));
+    } catch (err) {
+      console.error('Error deleting post:', err);
+      alert('Failed to delete post: ' + (err.message || 'Unknown error'));
+    }
+  };
+
+  // Handle toggle privacy
+  const handleTogglePrivacy = async (postId, currentPrivacy) => {
+    const newPrivacy = !currentPrivacy;
+    
+    try {
+      const provider = new ethers.BrowserProvider(walletClient.transport);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(socialContractAddress, socialPostsABI, signer);
+
+      const tx = await contract.setPostPrivacy(postId, newPrivacy);
+      await tx.wait();
+
+      alert(`Post is now ${newPrivacy ? 'private' : 'public'}!`);
+      setPosts(prev => prev.map(post => 
+        post.id === postId ? { ...post, isPrivate: newPrivacy } : post
+      ));
+    } catch (err) {
+      console.error('Error toggling privacy:', err);
+      alert('Failed to update privacy: ' + (err.message || 'Unknown error'));
+    }
+  };
+
+  const PostCard = ({ post }) => {
+    const [showMenu, setShowMenu] = useState(false);
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+          setShowMenu(false);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    return (
+      <div className="bg-black shadow-2xl text-white rounded-xl outline outline-offset-2 outline-zinc-700 overflow-hidden">
+        <div className="relative">
+          <img
+            src={`https://gateway.lighthouse.storage/ipfs/${post.image}`}
+            alt="Post"
+            className="w-full h-64 object-cover"
+            onError={(e) => {
+              e.currentTarget.src = '/placeholder-image.png';
+            }}
+          />
+          
+          {/* Private Badge */}
+          {post.isPrivate && (
+            <div className="absolute top-2 left-2 flex items-center gap-1 bg-orange-900 bg-opacity-90 text-orange-200 text-xs px-2 py-1 rounded backdrop-blur-sm">
+              <Lock className="h-3 w-3" />
+              <span>Private</span>
+            </div>
+          )}
+
+          {/* Three-dot menu */}
+          <div className="absolute top-2 right-2" ref={menuRef}>
+            <button
+              onClick={() => setShowMenu(!showMenu)}
+              className="p-2 bg-black bg-opacity-70 text-white hover:bg-opacity-90 rounded-lg transition-colors backdrop-blur-sm"
+            >
+              <MoreVertical className="h-4 w-4" />
+            </button>
+
+            {showMenu && (
+              <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border-2 border-zinc-700 rounded-lg shadow-xl z-50 overflow-hidden">
+                <button
+                  onClick={() => {
+                    handleTogglePrivacy(post.id, post.isPrivate);
+                    setShowMenu(false);
+                  }}
+                  className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-white hover:bg-zinc-800 transition-colors"
+                >
+                  {post.isPrivate ? (
+                    <>
+                      <Globe className="h-4 w-4 text-green-400" />
+                      <span>Make Public</span>
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="h-4 w-4 text-orange-400" />
+                      <span>Make Private</span>
+                    </>
+                  )}
+                </button>
+
+                <div className="border-t border-zinc-700"></div>
+
+                <button
+                  onClick={() => {
+                    handleDeletePost(post.id);
+                    setShowMenu(false);
+                  }}
+                  className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-400 hover:bg-zinc-800 transition-colors"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span>Delete Post</span>
+                </button>
+              </div>
+            )}
           </div>
-          <a
-            href={`https://gateway.lighthouse.storage/ipfs/${post.image}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-purple-300 hover:text-purple-400 text-sm underline"
-          >
-            View on 0g storage
-          </a>
+
+          <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+            {new Date(Number(post.timestamp) * 1000).toLocaleDateString()}
+          </div>
         </div>
-        <div className="text-xs text-zinc-400 mt-2">
-          Hash: {post.image.slice(0, 20)}...
+        
+        <div className="p-4">
+          <div className="flex justify-between items-center">
+            <div className="text-purple-300 font-sans text-sm">
+              Post #{post.id.toString()}
+            </div>
+            <a
+              href={`https://gateway.lighthouse.storage/ipfs/${post.image}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-300 hover:text-purple-400 text-sm underline"
+            >
+              View on 0g storage
+            </a>
+          </div>
+          <div className="text-xs text-zinc-400 mt-2">
+            Hash: {post.image.slice(0, 20)}...
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>
@@ -370,6 +744,30 @@ const Profile = () => {
         )}
 
         <div className="mb-8">
+        <button
+            onClick={() => setShowFollowersModal(true)}
+            className="bg-black outline outline-2 outline-purple-400 hover:outline-purple-500 rounded-lg shadow-sm p-4 transition-all cursor-pointer text-left"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-white">Followers</p>
+                <p className="text-2xl font-bold text-white">{followerCount}</p>
+              </div>
+              <Users className="h-8 w-8 text-pink-200" />
+            </div>
+          </button>
+          <button
+            onClick={() => setShowFollowingModal(true)}
+            className="bg-black outline outline-2 outline-purple-400 hover:outline-purple-500 rounded-lg shadow-sm p-4 transition-all cursor-pointer text-left mx-8 my-8"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-white">Following</p>
+                <p className="text-2xl font-bold text-white">{followingCount}</p>
+              </div>
+              <UserPlus className="h-8 w-8 text-pink-200" />
+            </div>
+          </button>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl font-sans font-semibold text-purple-300">
               My Posts ({posts.length})
@@ -377,9 +775,10 @@ const Profile = () => {
             <button
               onClick={loadUserPosts}
               disabled={loadingPosts || !isConnected}
-              className="px-4 py-2 bg-purple-400 text-white rounded-lg font-semibold hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-400 text-white rounded-lg font-semibold hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loadingPosts ? 'Loading...' : 'Refresh'}
+              <RefreshCw className={`h-4 w-4 ${loadingPosts ? 'animate-spin' : ''}`} />
+              <span>{loadingPosts ? 'Loading...' : 'Refresh'}</span>
             </button>
           </div>
 
@@ -413,6 +812,18 @@ const Profile = () => {
             </div>
           )}
         </div>
+        <FollowListModal
+          isOpen={showFollowersModal}
+          onClose={() => setShowFollowersModal(false)}
+          title="Followers"
+          addresses={followersArray}
+        />
+        <FollowListModal
+          isOpen={showFollowingModal}
+          onClose={() => setShowFollowingModal(false)}
+          title="Following"
+          addresses={followingArray}
+        />
       </div>
     </>
   );
