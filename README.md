@@ -1,17 +1,18 @@
 GET STARTED
 - Go to https://stogram.xyz
 - Connect your wallet (Deployed on 0g Mainnet)
-- Click on Username or {https://stogram.xyz/naming} Enter your preferred Username and mint it on chain
+- Click on Username or https://stogram.xyz/naming Enter your preferred Username and mint it on chain
 - Congrats you're now onboard
 
 POST AND PRIVACY 
-- You can now post whatever you like by clicking on Post or {https://stogram.xyz/post}
+- You can now post whatever you like by clicking on Post or https://stogram.xyz/post
 - Choose that you want to make a public post or private post
 - Click on Create post and it'll be minted onchain and store on the 0g storage network
 
 PREDICTION MARKET PLACE :
 We offer a prediction market place where you can Bet on existing polls or create one of your own and earn 2% of total bets. 
 Polls resolve automatically after the criteria is fulfilled and rewards are disbursed as soon as polls resolve.
+Visit https://stogram.xyz/predict
 
 Bet on existing Polls : 
 - Select any existing poll to bet on (Make sure the poll is active)
@@ -37,7 +38,7 @@ Your poll will be created and made live instantly, now you'll rest back while yo
 
 PROFILE MANAGEMENT :
 
-- Visit Profile or {https://stogram.xyz/profile}
+- Visit Profile or https://stogram.xyz/profile
 - You can manage your posts here
 - Delete posts or change their visiliblity accordingly by clicking on the menu icon of post.
 - You can also see your username here
@@ -48,6 +49,6 @@ INTERACT WITH OTHERS :
 - Click on the searsh username to find your friends
 - enter their usernames
 - follow/unfollow them according to your convenience
-- 
+  
 
 You're All set to Rock 🚀
