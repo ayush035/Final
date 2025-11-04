@@ -68,9 +68,9 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
 
   return (
     <div className="fixed inset-0 bg-[#16030d] bg-opacity-10  flex items-center justify-center z-50">
-      <div className="bg-[#16030d] outline outline-2 outline-[#39071f] p-6 rounded-lg max-w-md w-full mx-4 max-h-96 overflow-y-auto">
+      <div className="bg-black outline outline-2 outline-purple-400 p-6 rounded-lg max-w-md w-full mx-4 max-h-96 overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold">Place Your Bet</h3>
+          <h3 className="text-xl font-bold text-white">Place Your Bet</h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600"
@@ -199,7 +199,7 @@ const BetModal = ({ pollId, onClose, onSuccess }) => {
             <button
               type="submit"
               disabled={loading || !amount || isConfirmed}
-              className="flex-1 bg-purple-500 hover:bg-rose-400 cursor-pointer disabled:bg-rose-400 text-white font-bold py-2 px-4 rounded transition-colors"
+              className="flex-1 bg-purple-500 hover:bg-purple-400 cursor-pointer disabled:bg-purple-300 text-white font-bold py-2 px-4 rounded transition-colors"
             >
               {loading ? 'Processing...' : 
                isConfirmed ? '✅ Success!' :

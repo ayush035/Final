@@ -56,7 +56,7 @@ const PredictionMarket = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setRefreshKey(prev => prev + 1)}
-                className="text-sm px-3 py-1 rounded transition-colors text-purple-500 bg-[#16030d] outline outline-2 outline-[#39071f] cursor-pointer"
+                className="text-sm px-3 py-1 rounded transition-colors text-purple-500 bg-black outline outline-2 outline-purple-400 cursor-pointer"
                 title="Refresh data"
               >
                Refresh
@@ -69,7 +69,7 @@ const PredictionMarket = () => {
       <div className="max-w-6xl mx-auto p-6">
         {/* Live Prices Section */}
         {!pricesLoading && (
-          <div className=" bg-[#16030d] outline outline-2 outline-[#39071f] p-4 rounded-lg shadow-md mb-6">
+          <div className=" bg-black outline outline-2 outline-purple-400 p-4 rounded-lg shadow-md mb-6">
             <h2 className="text-lg font-bold mb-3 text-purple-500 "> Live Prices</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">

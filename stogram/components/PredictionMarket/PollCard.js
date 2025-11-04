@@ -193,7 +193,7 @@ const PollCard = ({ pollId }) => {
   };
 
   return (
-    <div className="bg-[#16030d] outline outline-2 outline-[#39071f] rounded-lg shadow-md p-6 mb-4">
+    <div className="bg-black outline outline-2 outline-purple-400 rounded-lg shadow-md p-6 mb-4">
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-xl font-bold flex-1 text-white">{question}</h3>
         {getStatusBadge()}
@@ -216,7 +216,7 @@ const PollCard = ({ pollId }) => {
 
       {/* User Bets */}
       {(parseFloat(userYes0g) > 0 || parseFloat(userNo0g) > 0) && (
-        <div className="mb-4 p-3 bg-[#16030d]  rounded">
+        <div className="mb-4 p-3 bg-black  rounded">
           <p className="text-sm font-semibold text-White mb-1">Your Bets:</p>
           <div className="flex gap-4 text-sm">
             <span className="text-purple-500">YES: {userYes0g} 0g</span>
@@ -232,7 +232,7 @@ const PollCard = ({ pollId }) => {
             <button
               onClick={() => setShowBetModal(true)}
               disabled={loading}
-              className="flex-1 bg-purple-500 cursor-pointer hover:bg-rose-400 disabled:bg-gray-300 text-white font-bold py-2 px-4 rounded transition-colors"            >
+              className="flex-1 bg-purple-500 cursor-pointer hover:bg-purple-500 disabled:bg-gray-300 text-white font-bold py-2 px-4 rounded transition-colors"            >
               {loading ? 'Processing...' : 'Place Bet'}
             </button>
             <button

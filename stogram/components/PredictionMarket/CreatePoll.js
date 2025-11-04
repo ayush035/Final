@@ -72,8 +72,8 @@ const CreatePoll = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-[#16030d] outline outline-2 outline-[#39071f] rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 mx-18">Create Prediction Poll</h2>
+    <div className="max-w-md mx-auto p-6 bg-black outline outline-2 outline-purple-400 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-4 mx-18 text-white">Create Prediction Poll</h2>
       
       {/* Success Message */}
       {isConfirmed && (
@@ -170,7 +170,7 @@ const CreatePoll = () => {
         <button
           type="submit"
           disabled={loading || isConfirmed}
-          className="w-full bg-purple-500  font-bold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-purple-500 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Creating Poll...' : 
            isConfirmed ? '✅ Poll Created!' :
