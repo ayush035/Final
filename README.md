@@ -52,3 +52,13 @@ INTERACT WITH OTHERS :
   
 
 You're All set to Rock 🚀
+
+
+RUN STOGRAM LOCALLY : 
+
+- Install the repository
+- In the Terminal enter cd Stogram
+- then hit npm install
+- npm run dev
+
+You're all set and ready to run Stogram locally and do experimentations.
